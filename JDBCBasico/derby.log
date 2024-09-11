@@ -1,5 +1,5 @@
 ----------------------------------------------------------------
-Sun Sep 08 23:35:01 ART 2024D001 : [0] The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217), [1] a816c00e-0191-d4a2-7245-00000f797180, [2] C:\Users\lauta\Documents\GitHub\Arquitecturas\JDBCBasico\MyDerbyDb, [3] jdk.internal.loader.ClassLoaders$AppClassLoader@3b07d329, [4] file:/C:/Users/lauta/.m2/repository/org/apache/derby/derby/10.17.1.0/derby-10.17.1.0.jar
+Mon Sep 09 23:15:38 ART 2024D001 : [0] The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217), [1] a816c00e-0191-d9b7-0e2b-00000f77b0e0, [2] C:\Users\lauta\Documents\GitHub\Arquitecturas\JDBCBasico\MyDerbyDb, [3] jdk.internal.loader.ClassLoaders$AppClassLoader@3b07d329, [4] file:/C:/Users/lauta/.m2/repository/org/apache/derby/derby/10.17.1.0/derby-10.17.1.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=19.0.2+7-44
 user.dir=C:\Users\lauta\Documents\GitHub\Arquitecturas\JDBCBasico

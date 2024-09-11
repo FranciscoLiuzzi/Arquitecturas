@@ -1,4 +1,4 @@
-package edu.isistan.db;
+package tp1.personas;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
@@ -6,7 +6,7 @@ import java.sql.*;
 public class BaseDeDatos {
 	
 	public static void main(String[] args) {
-		String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+		String driver = "com.mysql.cj.jdbc.Driver";
 		
 		try {
 			Class.forName(driver).getDeclaredConstructor().newInstance();
@@ -16,11 +16,12 @@ public class BaseDeDatos {
 				System.exit(1);
 		}
 		
-		String uri = "jdbc:derby:MyDerbyDb;create=true";
+		String uri = "jdbc:mysql://localhost:3306/Arquitecturas";
 		
 		try {
-			Connection conn = DriverManager.getConnection(uri);
-			//createTables(conn);
+			Connection conn = DriverManager.getConnection(uri, "root", "naranja");
+			conn.setAutoCommit(false);
+			createTables(conn);
 			addPerson(conn, 1, "Juan", 20);
 			addPerson(conn, 2, "Paula", 20);
 			conn.close();
