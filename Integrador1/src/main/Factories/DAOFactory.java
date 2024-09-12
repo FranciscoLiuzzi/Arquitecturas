@@ -1,5 +1,5 @@
-package tp1.personas.Factories;
-import tp1.personas.DAOs.*;
+package main.Factories;
+import main.DAOs.*;
 
 public abstract class DAOFactory {
 	
@@ -20,4 +20,5 @@ public abstract class DAOFactory {
 	public abstract ProductoDAO getProductoDAO();
 	public abstract ClienteDAO getClienteDAO();
 	public abstract FacProDAO getFacProDAO();
+	public abstract void closeConnection();
 }

@@ -1,4 +1,4 @@
-package tp1.personas.Objects;
+package main.Objects;
 
 public class Factura {
 	private Integer idFac;

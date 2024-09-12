@@ -1,11 +1,11 @@
-package tp1.personas.Objects;
+package main.Objects;
 
 public class Producto {
 	private Integer id;
 	private String name;
-	private Integer value;
+	private Float value;
 	
-	public Producto(Integer id, String name, Integer value) {
+	public Producto(Integer id, String name, Float value) {
 		this.id = id;
 		this.name = name;
 		this.value = value;
@@ -24,11 +24,11 @@ public class Producto {
 		this.name = name;
 	}
 
-	public Integer getValue() {
+	public Float getValue() {
 		return value;
 	}
 
-	public void setValue(Integer value) {
+	public void setValue(Float value) {
 		this.value = value;
 	}
 

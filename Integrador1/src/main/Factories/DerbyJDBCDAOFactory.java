@@ -1,11 +1,11 @@
-package tp1.personas.Factories;
+package main.Factories;
 
-import tp1.personas.DAOs.ClienteDAO;
-import tp1.personas.DAOs.FacProDAO;
-import tp1.personas.DAOs.FacturaDAO;
-import tp1.personas.DAOs.ProductoDAO;
+import main.DAOs.ClienteDAO;
+import main.DAOs.FacProDAO;
+import main.DAOs.FacturaDAO;
+import main.DAOs.ProductoDAO;
 
-public class JpaHibernateJDBCDAOFactory extends DAOFactory {
+public class DerbyJDBCDAOFactory extends DAOFactory {
 
 	@Override
 	public FacturaDAO getFacturaDAO() {
@@ -29,6 +29,12 @@ public class JpaHibernateJDBCDAOFactory extends DAOFactory {
 	public FacProDAO getFacProDAO() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void closeConnection() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
