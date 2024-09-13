@@ -1,5 +1,6 @@
 package tp1.personas.abstracts;
 
+import tp1.personas.DAOs.PersonaDAO;
 import tp1.personas.Factories.DerbyJDBCDAOFactory;
 import tp1.personas.Factories.JpaHibernateJDBCDAOFactory;
 import tp1.personas.Factories.MySqlJDBCDAOFactory;

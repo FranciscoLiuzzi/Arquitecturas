@@ -5,14 +5,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import tp1.personas.DAOs.PersonaDAO;
 import tp1.personas.abstracts.DAOFactory;
-import tp1.personas.abstracts.PersonaDAO;
 
 public class MySqlJDBCDAOFactory extends DAOFactory {
 	
 	
 	private static MySqlJDBCDAOFactory instance = null;
-	
 	public static final String driver = "com.mysql.cj.jdbc.Driver";
 	public static final String uri = "jdbc:mysql://localhost:3306/Arquitecturas";
 	public static Connection conn;
@@ -39,4 +38,5 @@ public class MySqlJDBCDAOFactory extends DAOFactory {
 		return null;
 	}
 
+}
 }

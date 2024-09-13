@@ -1,7 +1,7 @@
 package tp1.personas.Factories;
 
+import tp1.personas.DAOs.PersonaDAO;
 import tp1.personas.abstracts.DAOFactory;
-import tp1.personas.abstracts.PersonaDAO;
 
 public class JpaHibernateJDBCDAOFactory extends DAOFactory {
 

@@ -1,7 +1,5 @@
 package tp1.personas.DAOs;
 
-import tp1.personas.abstracts.PersonaDAO;
-
 public class MySqlPersonaDAO implements PersonaDAO{
 
 	@Override
