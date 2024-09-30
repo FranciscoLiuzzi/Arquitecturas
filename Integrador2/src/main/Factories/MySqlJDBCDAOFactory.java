@@ -62,6 +62,7 @@ public class MySqlJDBCDAOFactory extends DAOFactory {
 		}
 	}
 	
+	
 	//Gets de DAO
 	@Override
 	public FacturaDAO getFacturaDAO() {

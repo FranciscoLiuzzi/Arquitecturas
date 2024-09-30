@@ -10,14 +10,16 @@ import tp1.personas.abstracts.DAOFactory;
 
 public class MySqlJDBCDAOFactory extends DAOFactory {
 	
-	
 	private static MySqlJDBCDAOFactory instance = null;
-	public static final String driver = "com.mysql.cj.jdbc.Driver";
+	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	public static final String uri = "jdbc:mysql://localhost:3306/Arquitecturas";
 	public static Connection conn;
 	
+	private MySqlJDBCDAOFactory() {
+	}
+	
 	try {
-		Class.forName(driver1).getDeclaredConstructor().newInstance();
+		Class.forName(driver).getDeclaredConstructor().newInstance();
 	} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 			| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
 		e.printStackTrace();
@@ -38,5 +40,4 @@ public class MySqlJDBCDAOFactory extends DAOFactory {
 		return null;
 	}
 
-}
 }

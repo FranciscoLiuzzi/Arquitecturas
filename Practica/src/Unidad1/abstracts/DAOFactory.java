@@ -1,9 +1,9 @@
-package tp1.personas.abstracts;
+package Unidad1.abstracts;
 
-import tp1.personas.DAOs.PersonaDAO;
-import tp1.personas.Factories.DerbyJDBCDAOFactory;
-import tp1.personas.Factories.JpaHibernateJDBCDAOFactory;
-import tp1.personas.Factories.MySqlJDBCDAOFactory;
+import Unidad1.DAOs.EjemploDAO;
+import Unidad1.Factories.DerbyJDBCDAOFactory;
+import Unidad1.Factories.JpaHibernateJDBCDAOFactory;
+import Unidad1.Factories.MySqlJDBCDAOFactory;
 
 public abstract class DAOFactory {
 	
@@ -13,12 +13,12 @@ public abstract class DAOFactory {
 	
 	public static DAOFactory getDAOFactory(int whichFactory) {
 		switch (whichFactory) {
-			case MYSQL_JDBC : return new MySqlJDBCDAOFactory();
+			case MYSQL_JDBC : return MySqlJDBCDAOFactory.getInstance();
 			case DERBY_JDBC : return new DerbyJDBCDAOFactory();
 			case JPA_HIBERNATE : return new JpaHibernateJDBCDAOFactory();
 		default: return null;
 		}
 	}
 	
-	public abstract PersonaDAO getPersonaDAO();
+	public abstract EjemploDAO getEjemploDAO();
 }
