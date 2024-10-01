@@ -24,7 +24,7 @@ public class EstudianteCarreraService extends EstudianteCarreraRepository{
 	
 	public List<EstudianteCarreraDTO> getCarrerasOf(Estudiante es) {
 		em.getTransaction().begin();
-		String jpql = "SELECT NEW EstudianteCarreraDTO(CONCAT(e.nombre, ', ', e.apellido), c.nombre, ec.fechaInscripcion, ec.fechaGraduacion) " +
+		String jpql = "SELECT NEW EstudianteCarreraDTO(CONCAT(e.nombre, ', ', e.apellido), c.nombre, ec.inicio, ec.graduacion) " +
 		"FROM EstudianteCarrera ec JOIN Estudiante e ON ec.estudiante.libreta = e.libreta " +
 		"JOIN Carrera c ON ec.carrera.id = c.id " +
 		"WHERE ec.estudiante.libreta = :estudiante";
@@ -48,11 +48,11 @@ public class EstudianteCarreraService extends EstudianteCarreraRepository{
 		return res;
 	} 
 
-	public List<EstudianteDTO> getListEstudiantePorCiudadResidendcia(String ciudad, String carrera) {
+	public List<EstudianteDTO> getListEstudiantePorCiudad(String ciudad, String carrera) {
 	    em.getTransaction().begin();
-	    String jpqlf = "SELECT NEW dtos.EstudianteDTO(e.nombre,e.apellido,e.edad,e.ciudadResidencia,e.genero,e.dni,e.libreta) " +
+	    String jpqlf = "SELECT NEW dtos.EstudianteDTO(e.nombre,e.apellido,e.edad,e.ciudad,e.genero,e.dni,e.libreta) " +
 	                     "FROM Estudiante e " +
-	                    "WHERE e.ciudadResidencia = :ciudad " +
+	                    "WHERE e.ciudad = :ciudad " +
 	                    "AND e.id IN (SELECT ec.estudiante.id FROM Carrera c JOIN c.estudiantes ec WHERE c.nombre = :carrera)";
 	    TypedQuery<EstudianteDTO> query = em.createQuery(jpqlf, EstudianteDTO.class);
 	    query.setParameter("ciudad", ciudad);

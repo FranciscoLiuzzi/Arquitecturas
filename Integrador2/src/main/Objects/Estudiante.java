@@ -7,33 +7,49 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
+@Table(indexes ={@Index(name = "idx_dni", columnList = "dni")})
 public class Estudiante {
 	@Column(name="nombre")
 	private String nombre;
+	
 	@Column(name="apellido")
 	private String apellido;
+	
 	@Column(name="edad")
 	private Integer edad;
+	
 	@Column(name="genero")
-	private char genero;
+	private String genero;
+	
 	@Column(name="dni")
 	private Integer dni;
+	
 	@Column(name="ciudad")
 	private String ciudad;
+	
 	@Id
 	@Column(name="libreta")
 	private Integer libreta;
+	
 	@Column(name="carrera")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<EstudianteCarrera> carreras;
 	
-	public Estudiante(String nombre, String apellido, Integer edad, char genero, Integer dni, String ciudad, Integer libreta) {
+	public Estudiante(){
+		super();
+		this.carreras = new HashSet<>();
+	}
+	
+	public Estudiante(String nombre, String apellido, Integer edad, String genero, Integer dni, String ciudad, Integer libreta) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
@@ -68,11 +84,11 @@ public class Estudiante {
 		this.edad = edad;
 	}
 
-	public char getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
-	public void setGenero(char genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 

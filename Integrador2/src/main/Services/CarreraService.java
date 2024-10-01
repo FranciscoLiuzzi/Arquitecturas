@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.time.LocalDate;
 import main.Objects.Carrera;
 import main.Objects.Estudiante;
 import main.Objects.EstudianteCarrera;
@@ -31,10 +32,10 @@ public class CarreraService extends CarreraRepository{
 		}
 	}
 	
-	public void matricular(Estudiante estudiante, Carrera carrera) {	
+	public void matricular(Estudiante estudiante, Carrera carrera, LocalDate inicio) {	
 		Objects.requireNonNull(estudiante);
 		Objects.requireNonNull(carrera);	
-		Date fecha = new Date();
+		LocalDate fecha = inicio;
 		EstudianteCarrera n = new EstudianteCarrera(estudiante, carrera, fecha);            
 		this.inscriptos.save(n);
 	}

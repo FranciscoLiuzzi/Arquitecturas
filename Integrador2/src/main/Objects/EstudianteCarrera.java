@@ -9,36 +9,47 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name="estudiante_carrera")
-public class EstudianteCarrera {
+public class EstudianteCarrera implements Serializable{
+	
 	@Id
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "estudiante_id")
 	private Estudiante estudiante;
+	
 	@Id
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "carrera_id")
 	private Carrera carrera;
-	@Column(name="inscripcion")
-	private Date inicio;
-	@Column(name="graduacion")
-	private Date graduacion;
 	
-	public EstudianteCarrera(Estudiante estudiante, Carrera carrera, Date inicio, Date graduacion) {
+	@Column(name="inscripcion")
+	private LocalDate inicio;
+	
+	@Column(name="graduacion")
+	private LocalDate graduacion;
+	
+	public EstudianteCarrera() {
+		super();
+	}
+
+	public EstudianteCarrera(Estudiante estudiante, Carrera carrera, LocalDate inicio, LocalDate graduacion) {
 		this.estudiante = Objects.requireNonNull(estudiante, "Estudiante must not be null");
 		this.carrera = Objects.requireNonNull(carrera, "Carrera must not be null");
 		this.inicio = inicio;
 		this.graduacion = graduacion;
 	}
 
-	public EstudianteCarrera(Estudiante estudiante, Carrera carrera, Date inicio) {
+	public EstudianteCarrera(Estudiante estudiante, Carrera carrera, LocalDate inicio) {
 		this(estudiante, carrera, inicio, null);
 	}
 
@@ -50,7 +61,7 @@ public class EstudianteCarrera {
 		return carrera.getId();
 	}
 
-	public void setGraduado(Date fechaGraduado) {
+	public void setGraduado(LocalDate fechaGraduado) {
 		this.graduacion = fechaGraduado;
 	}
 
