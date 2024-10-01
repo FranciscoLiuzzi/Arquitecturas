@@ -13,13 +13,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import main.DAOs.dbDAO;
-import main.Factories.DAOFactory;
-import main.Objects.Cliente;
-import main.Objects.FacPro;
-import main.Objects.Factura;
-import main.Objects.Producto;
-
 public class DBHelper {
 
     private Connection conn = null;
@@ -37,7 +30,7 @@ public class DBHelper {
                 }
         
         try {           
-            conn = DriverManager.getConnection(uri, "root", "naranja");
+            conn = DriverManager.getConnection(uri, "root", "");
             conn.setAutoCommit(false);
         } catch (Exception e) {
             e.printStackTrace();
