@@ -35,8 +35,6 @@ public class CarreraService extends CarreraRepositoryImpl{
 	}
 	
 	public void matricular(Estudiante e, Carrera c) {
-		System.out.println("Estudiante es: " + e.toString());
-		System.out.println("Carrera es: " + c.toString());
 		Objects.requireNonNull(e);
 		Objects.requireNonNull(c);	
 		Date hoy = new Date();
