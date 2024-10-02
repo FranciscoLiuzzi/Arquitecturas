@@ -1,48 +1,51 @@
 package main.DTOs;
 
+
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
 public class EstudianteCarreraDTO {
-	private String estudiante;
-	private String carrera;
-	private Date inicio;
-	private Date graduacion;
-	
+	private Date fechaInscripcion;
+	private Date fechaGraduacion;
+	private String e;
+	private String c;
 
-	public EstudianteCarreraDTO(String estudiante, String carrera, Date inicio, Date graduacion) {
-		this.estudiante = estudiante;
-		this.carrera = carrera;
-		this.inicio = inicio;
-		this.graduacion = graduacion;
+	public EstudianteCarreraDTO(String e, String c, Date fechaInscripcion, Date fechaGaduacion) {
+		this.fechaInscripcion = fechaInscripcion;
+		this.fechaGraduacion = fechaGaduacion;
+		this.e = e;
+		this.c = c;
 	}
 
-	public Integer getAntiguedad(){
-		return Calendar.getInstance().get(Calendar.YEAR) - inicio.getYear();
-	}
-	
-	public Date getInicio() {
-		return inicio;
-	}
-	
-	public Date getGraduacion() {
-		return graduacion;
+	public Date getFechaInscripcion() {
+		return fechaInscripcion;
 	}
 
 	public boolean isGraduado() {
-		return graduacion != null;
-	}
-	
-	public String getEstudiante() {
-		return estudiante;
+		return fechaGraduacion != null;
 	}
 
-	public String getCarrera() {
-		return carrera;
+	public Integer getAntiguedad(){
+		Calendar fechaInscripcion = Calendar.getInstance();
+		fechaInscripcion.setTimeInMillis(this.fechaInscripcion.getTime());
+		return Calendar.getInstance().get(Calendar.YEAR) - fechaInscripcion.get(Calendar.YEAR);
+	}
+	
+	public Date getFechaGraduacion() {
+		return fechaGraduacion;
+	}
+
+	public String getE() {
+		return e;
+	}
+
+	public String getC() {
+		return c;
 	}
 
 	@Override
 	public String toString() {
-		return "Estudiante: " + estudiante + ", Carrera: " + carrera +", Fecha de inicio: " + inicio + ", Fecha de graduacion:" + graduacion + ", Antiguedad:" + getAntiguedad();
+		return "Estudiante: " + e + ", Carrera: " + c +", fecha de inscripcion: " + fechaInscripcion + ", fecha de graduacion:" + fechaGraduacion + ", antiguedad:" + getAntiguedad();
 	}
 }

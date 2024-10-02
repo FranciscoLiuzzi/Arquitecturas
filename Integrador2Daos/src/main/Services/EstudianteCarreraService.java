@@ -2,7 +2,6 @@ package main.Services;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -25,7 +24,7 @@ public class EstudianteCarreraService extends EstudianteCarreraRepositoryImpl{
 	
 	public List<EstudianteCarreraDTO> getCarrerasOf(Estudiante es) {
 		em.getTransaction().begin();
-		String jpql = "SELECT NEW main.DTOs.EstudianteCarreraDTO(CONCAT(e.nombre, ', ', e.apellido), c.nombre, ec.fechaInscripcion, ec.fechaGraduacion) " +
+		String jpql = "SELECT NEW EstudianteCarreraDTO(CONCAT(e.nombre, ', ', e.apellido), c.nombre, ec.fechaInscripcion, ec.fechaGraduacion) " +
 		"FROM EstudianteCarrera ec JOIN Estudiante e ON ec.estudiante.libreta = e.libreta " +
 		"JOIN Carrera c ON ec.carrera.id = c.id " +
 		"WHERE ec.estudiante.libreta = :estudiante";
@@ -38,7 +37,7 @@ public class EstudianteCarreraService extends EstudianteCarreraRepositoryImpl{
 
 	public List<EstudiantesEnCarreraDTO> getCarrerasPorCantEstudiantes() {
 		em.getTransaction().begin();
-		String jpql = "SELECT NEW main.DTOs.EstudiantesEnCarreraDTO(c.nombre, COUNT(DISTINCT ec.estudiante) AS cantEstudiantes) " +
+		String jpql = "SELECT NEW dtos.InformeCarreraCantEstudiantesDTO(c.nombre, COUNT(DISTINCT ec.estudiante) AS cantEstudiantes) " +
 						"FROM EstudianteCarrera ec " +
 						"JOIN ec.carrera c " +
 						"GROUP BY ec.carrera " +
@@ -51,7 +50,7 @@ public class EstudianteCarreraService extends EstudianteCarreraRepositoryImpl{
 
 	public List<EstudianteDTO> getListEstudiantePorCiudadResidencia(String ciudad, String carrera) {
 	    em.getTransaction().begin();
-	    String jpqlf = "SELECT NEW main.DTOs.EstudianteDTO(e.nombre,e.apellido,e.edad,e.ciudadResidencia,e.genero,e.dni,e.libreta) " +
+	    String jpqlf = "SELECT NEW dtos.EstudianteDTO(e.nombre,e.apellido,e.edad,e.ciudadResidencia,e.genero,e.dni,e.libreta) " +
 	                     "FROM Estudiante e " +
 	                    "WHERE e.ciudadResidencia = :ciudad " +
 	                    "AND e.id IN (SELECT ec.estudiante.id FROM Carrera c JOIN c.estudiantes ec WHERE c.nombre = :carrera)";
@@ -69,11 +68,11 @@ public class EstudianteCarreraService extends EstudianteCarreraRepositoryImpl{
 		String SQLquery = "SELECT nombre AS Carrera, Año, SUM(Inscriptos) AS Inscriptos, SUM(Graduados) AS Graduados " +
 			"FROM " +
 			"((SELECT id, nombre, YEAR(fecha_insc) AS Año, COUNT(*) AS Inscriptos, 0 AS Graduados " +
-			"FROM Carrera JOIN estudiante_carrera on Carrera.id = estudiante_carrera.carrera_id " +
-			"GROUP BY Carrera.id, YEAR(estudiante_carrera.fecha_insc)) " +
+			"FROM carrera JOIN estudiante_carrera on carrera.id = estudiante_carrera.carrera_id " +
+			"GROUP BY carrera.id, YEAR(estudiante_carrera.fecha_insc)) " +
 			"UNION " +
 			"(SELECT id, nombre, YEAR(fecha_grad) AS Año,0 AS Inscriptos, COUNT(*) AS Graduados " +
-			"FROM Carrera JOIN estudiante_carrera on id = Carrera_id WHERE !ISNULL(fecha_grad) " +
+			"FROM carrera JOIN estudiante_carrera on id = carrera_id WHERE !ISNULL(fecha_grad) " +
 			"GROUP BY id, YEAR(fecha_grad))) u " +
 			"GROUP BY nombre, Año " +
 			"ORDER BY nombre, Año";
@@ -84,7 +83,7 @@ public class EstudianteCarreraService extends EstudianteCarreraRepositoryImpl{
 		for (Object[] row : res) {
 			Long a = row[2] == null ? null : ((BigDecimal) row[2]).longValue();
 			Long b = row[3] == null ? null : ((BigDecimal) row[3]).longValue();
-			CarreraInscriptosGraduadosDTO inf = new CarreraInscriptosGraduadosDTO((String) row[0], (Date) row[1], a, b);
+			CarreraInscriptosGraduadosDTO inf = new CarreraInscriptosGraduadosDTO((String) row[0], (Integer) row[1], a, b);
 			informe.add(inf);
 		}
 		em.getTransaction().commit();

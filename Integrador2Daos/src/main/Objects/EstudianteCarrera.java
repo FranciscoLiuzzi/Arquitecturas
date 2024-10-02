@@ -9,12 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -69,12 +64,4 @@ public class EstudianteCarrera implements Serializable{
 		fechaInscripcion.setTimeInMillis(this.fechaInscripcion.getTime());
 		return Calendar.getInstance().get(Calendar.YEAR) - fechaInscripcion.get(Calendar.YEAR);
 	}
-
-	@Override
-	public String toString() {
-		return "EstudianteCarrera [fechaInscripcion=" + fechaInscripcion + ", fechaGraduacion=" + fechaGraduacion
-				+ ", estudiante=" + estudiante + ", carrera=" + carrera + "]";
-	}
-	
-	
 }

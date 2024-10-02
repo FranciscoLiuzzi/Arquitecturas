@@ -31,7 +31,6 @@ public class Estudiante{
 	private String genero;
 	@Column(name="dni")
 	private Integer dni;
-	
 	@Id
 	@Column(name="libreta")
 	private Integer libreta;
@@ -120,13 +119,4 @@ public class Estudiante{
 	public void setCarreras(EstudianteCarrera carrera) {
 		this.carreras.add(carrera);
 	}
-
-	@Override
-	public String toString() {
-		return "Estudiante [nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", ciudadResidencia="
-				+ ciudadResidencia + ", genero=" + genero + ", dni=" + dni + ", libreta=" + libreta + ", carreras="
-				+ carreras + "]";
-	}
-	
-	
 }

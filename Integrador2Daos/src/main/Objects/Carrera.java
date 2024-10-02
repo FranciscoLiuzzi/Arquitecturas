@@ -55,11 +55,4 @@ public class Carrera {
 	public void setEstudiantes(EstudianteCarrera estudiante) {
 		this.estudiantes.add(estudiante);
 	}
-
-	@Override
-	public String toString() {
-		return "Carrera [id=" + id + ", nombre=" + nombre + ", estudiantes=" + estudiantes + "]";
-	}
-	
-	
 }

@@ -1,14 +1,12 @@
 package main.DTOs;
 
-import java.util.Date;
-
 public class CarreraInscriptosGraduadosDTO {
 	private String carrera;
-	private Date año;
+	private Integer año;
 	private Long inscriptos;
 	private Long graduados;
 	
-	public CarreraInscriptosGraduadosDTO(String carrera, Date año, Long inscriptos, Long graduados) {
+	public CarreraInscriptosGraduadosDTO(String carrera, Integer año, Long inscriptos, Long graduados) {
 		this.carrera = carrera;
 		this.año = año;
 		this.inscriptos = inscriptos;
@@ -27,7 +25,7 @@ public class CarreraInscriptosGraduadosDTO {
 		return graduados;
 	}
 
-	public Date getAño() {
+	public int getAño() {
 		return año;
 	}
 

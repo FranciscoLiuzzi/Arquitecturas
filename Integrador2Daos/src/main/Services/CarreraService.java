@@ -34,14 +34,12 @@ public class CarreraService extends CarreraRepositoryImpl{
 		}
 	}
 	
-	public void matricular(Estudiante e, Carrera c) {
-		System.out.println("Estudiante es: " + e.toString());
-		System.out.println("Carrera es: " + c.toString());
+	public void matricular(Estudiante e, Carrera c) {	
 		Objects.requireNonNull(e);
 		Objects.requireNonNull(c);	
 		Date hoy = new Date();
 		Timestamp ts = new Timestamp(hoy.getTime());
-		EstudianteCarrera nuevo = new EstudianteCarrera(e, c, ts);       
+		EstudianteCarrera nuevo = new EstudianteCarrera(e, c, ts);            
 		this.inscriptos.save(nuevo);
 	}
 }
