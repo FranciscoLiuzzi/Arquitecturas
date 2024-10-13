@@ -15,6 +15,9 @@ public class MySqlEjemploDAO implements EjemploDAO{
 	
 //	El DAO cuenta con una conexion pasada por el constructor
 	
+	
+//  Se prepara en un string la sentencia SQL, con ese string se hace un PreparedStatement y se reemplazan los values con set para evitar inyeccion
+//  Se cierra la conexion y se commitean los cambios
 	@Override
 	public int insert(Ejemplo ins) throws Exception {
 		String insert = "INSERT INTO Tabla (id, name) VALUES (?, ?)";

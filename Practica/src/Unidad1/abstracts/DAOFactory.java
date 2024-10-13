@@ -6,11 +6,12 @@ import Unidad1.Factories.JpaHibernateJDBCDAOFactory;
 import Unidad1.Factories.MySqlJDBCDAOFactory;
 
 public abstract class DAOFactory {
-	
+	//Variables estaticas para seleccionar el tipo de Factory que se va a crear en base a la BD
 	public static final int MYSQL_JDBC = 1;
 	public static final int DERBY_JDBC = 2;
 	public static final int JPA_HIBERNATE = 3;
 	
+	//Metodo que crea las factories 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 		switch (whichFactory) {
 			case MYSQL_JDBC : return MySqlJDBCDAOFactory.getInstance();

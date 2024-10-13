@@ -39,7 +39,6 @@ public class MySqlJDBCDAOFactory extends DAOFactory {
         return conn;
 	}
 		
-	@Override
     public void closeConnection() {
         try {
             conn.close();
