@@ -1,6 +1,5 @@
 package main.Controllers;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +25,7 @@ public class EstudianteController {
 	    @GetMapping("genero/{genero}")
 	    public ResponseEntity<?> getAllByGenero(@PathVariable String genero){
 	        try{
-	            return ResponseEntity.status(HttpStatus.OK).body(estudianteService.buscarEstudiantesPorGenero(genero));
+	            return ResponseEntity.status(HttpStatus.OK).body(estudianteService.findByGenero(genero));
 	        }catch (Exception e){
 	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error.\"\n\"error\":\""+e.getMessage()+"\"}");
 	        }

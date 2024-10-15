@@ -19,11 +19,11 @@ public class EstudianteService{
 
 	@Transactional (readOnly = true)
 	public List<EstudianteDTO> buscarAllEstudiantesOrderByApellido() throws Exception {
-		return estudianteRepository.getAllEstudiantesOrderByApellido().stream().map(EstudianteDTO::new ).toList();
+		return estudianteRepository.findAllByOrderByApellidoAscNombreAsc().stream().map(EstudianteDTO::new ).toList();
 	}
 	
 	@Transactional (readOnly = true)
-	public List<EstudianteDTO> buscarEstudiantesPorGenero(String genero) throws Exception{
+	public List<EstudianteDTO> findByGenero(String genero) throws Exception{
 		 return estudianteRepository.findByGenero(genero).stream().map(EstudianteDTO::new ).toList();
 	}
 
