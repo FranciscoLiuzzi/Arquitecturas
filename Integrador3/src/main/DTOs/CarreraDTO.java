@@ -4,6 +4,10 @@ import main.Objects.Carrera;
 
 public class CarreraDTO {
 	private String nombre;
+	
+	public CarreraDTO() {
+		super();
+	}
 
 	public CarreraDTO(String nombre) {
 		this.nombre = nombre;

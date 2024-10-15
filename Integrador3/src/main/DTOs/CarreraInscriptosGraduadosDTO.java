@@ -8,6 +8,10 @@ public class CarreraInscriptosGraduadosDTO {
 	private Long inscriptos;
 	private Long graduados;
 	
+	public CarreraInscriptosGraduadosDTO() {
+		super();
+	}
+	
 	public CarreraInscriptosGraduadosDTO(String carrera, Date año, Long inscriptos, Long graduados) {
 		this.carrera = carrera;
 		this.año = año;

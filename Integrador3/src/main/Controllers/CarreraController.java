@@ -42,7 +42,7 @@ public class CarreraController {
 	 }
 
 	 @DeleteMapping("/{id}")
-	 public ResponseEntity<?> delete(@RequestBody Integer id){
+	 public ResponseEntity<?> delete(@PathVariable Integer id){
 	     try{
 	         carreraService.delete(id);
 	         return ResponseEntity.status(HttpStatus.OK).body("Se elimino correctamente la carrera con id: " + id);

@@ -11,6 +11,10 @@ public class EstudianteCarreraDTO {
 	private String e;
 	private String c;
 
+	public EstudianteCarreraDTO() {
+		super();
+	}	
+	
 	public EstudianteCarreraDTO(String e, String c, Date fechaInscripcion, Date fechaGaduacion) {
 		this.fechaInscripcion = fechaInscripcion;
 		this.fechaGraduacion = fechaGaduacion;

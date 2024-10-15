@@ -4,6 +4,10 @@ public class EstudiantesEnCarreraDTO {
 	private String nombre;
 	private Long cantEstudiantes;
 	
+	public EstudiantesEnCarreraDTO() {
+		super();
+	}
+	
 	public EstudiantesEnCarreraDTO(String nombre, Long cantEstudiantes) {
 		this.nombre = nombre;
 		this.cantEstudiantes = cantEstudiantes;
