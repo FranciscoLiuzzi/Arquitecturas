@@ -36,6 +36,16 @@ public class EstudianteDTO {
 		this.libreta = save.getLibreta();
 		this.edad = save.getEdad();
 	}
+	
+	public EstudianteDTO(EstudianteDTO save) {
+		this.nombre = save.getNombre();
+		this.apellido = save.getApellido();
+		this.ciudadResidencia = save.getCiudadResidencia();
+		this.genero = save.getGenero();
+		this.dni = save.getDni();
+		this.libreta = save.getLibreta();
+		this.edad = save.getEdad();
+	}
 
 	public String getNombre() {
 		return nombre;

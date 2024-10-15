@@ -16,62 +16,26 @@ public class EstudianteService{
 	
 	@Autowired
 	private EstudianteRepositoryImpl estudianteRepository;
-	
-//	@Transactional
-//	public EstudianteDTO buscarEstudianteByLibreta(int libreta) {
-//		this.em.getTransaction().begin();
-//		String jpql = "SELECT NEW main.DTOs.EstudianteDTO(p.nombre, p.apellido, p.edad, p.ciudadResidencia, p.genero, p.dni, p.libreta) " +
-//						"FROM Estudiante p WHERE p.libreta = ?1";
-//		TypedQuery<EstudianteDTO> query = em.createQuery(jpql, EstudianteDTO.class);
-//		query.setParameter(1, libreta);
-//		EstudianteDTO res = query.getSingleResult();
-//		this.em.getTransaction().commit();
-//		return res;
-//	}  Esto deberia ser trivial con el find by id si la libreta ya es el id
 
-	@Transactional
+	@Transactional (readOnly = true)
 	public List<EstudianteDTO> buscarAllEstudiantesOrderByApellido() throws Exception {
-        try{
-        	var resultado = estudianteRepository.getAllEstudiantesOrderByApellido();
-        	return resultado;
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
+		return estudianteRepository.getAllEstudiantesOrderByApellido().stream().map(EstudianteDTO::new ).toList();
 	}
 	
-	@Transactional
-	public List<String> buscarGeneros() throws Exception{
-        try{
-        	var resultado = estudianteRepository.getGeneros();
-            return resultado;
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
-	}
-	
-	@Transactional
+	@Transactional (readOnly = true)
 	public List<EstudianteDTO> buscarEstudiantesPorGenero(String genero) throws Exception{
-        try{
-        	var resultado = estudianteRepository.getEstudiantesPorGenero(genero);
-        	return resultado;
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
+		 return estudianteRepository.findByGenero(genero).stream().map(EstudianteDTO::new ).toList();
 	}
 
-	@Transactional
-	public List<Estudiante> findAll() throws Exception {
-		return estudianteRepository.findAll();
+	@Transactional (readOnly = true)
+	public List<EstudianteDTO> findAll() throws Exception {
+		return this.estudianteRepository.findAll().stream().map(EstudianteDTO::new ).toList();
 	}
 
-	@Transactional
-	public Estudiante findById(Integer id) throws Exception {
-		try{
-            Optional<Estudiante> estudianteBuscado = estudianteRepository.findById(id);
-            return estudianteBuscado.get();
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
+	@Transactional (readOnly = true)
+	public EstudianteDTO findById(Integer id) throws Exception {
+		return estudianteRepository.findById(id).map(EstudianteDTO::new).orElseThrow(
+	            () -> new IllegalArgumentException("ID de usuario invalido:" + id));
 	}
 
 	@Transactional
@@ -96,16 +60,10 @@ public class EstudianteService{
 	}
 
 	@Transactional
-	public boolean delete(Integer id) throws Exception {
-		try{
-            if(estudianteRepository.existsById(id)){
-            	estudianteRepository.deleteById(id);
-                return true;
-            }else{
-                throw new Exception();
-            }
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
+	public void delete(Integer id) throws Exception {
+		estudianteRepository.delete(estudianteRepository.findById(id).orElseThrow(
+	            () -> new IllegalArgumentException("ID de usuario invalido:" + id)));
 	}
+	
+	//Hay que de alguna manera buscar por ciudad
 }

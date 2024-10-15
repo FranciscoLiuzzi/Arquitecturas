@@ -18,7 +18,6 @@ public interface EstudianteRepositoryImpl extends JpaRepository<Estudiante, Inte
 	
 	@Query("SELECT DISTINCT e.genero FROM Estudiante e")
 	public List<String> getGeneros();
-	
-	@Query("SELECT NEW main.DTOs.EstudianteDTO(e.nombre,e.apellido,e.edad,e.ciudadResidencia,e.genero,e.dni,e.libreta) " + "FROM Estudiante e " + "WHERE (e.genero = :genero)")
-	public List<EstudianteDTO> getEstudiantesPorGenero(String genero);
+
+	public List<EstudianteDTO> findByGenero(String genero);
 }
