@@ -67,4 +67,13 @@ public class EstudianteController {
 	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. No se pudo eliminar.\"\n\"error\":\""+e.getMessage()+"\"}");
 	        }
 	    }
+	    
+	    @GetMapping("/buscarPor")
+	    public ResponseEntity<?> buscarPor(@RequestParam("carrera") String carrera, @RequestParam("ciudad") String ciudad) {
+	        try{
+	            return ResponseEntity.status(HttpStatus.OK).body(estudianteService.estudiantePorCiudadDeResidencia(carrera, ciudad));
+	        }catch (Exception e){
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Intente nuevamente.\"\n\"error\":\"" + e.getMessage()+"\"}");
+	        }
+	    }
 }

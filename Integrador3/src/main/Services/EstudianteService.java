@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import main.DTOs.EstudianteDTO;
 import main.Objects.Estudiante;
-import main.Repositories.EstudianteCarreraRepositoryImpl;
+import main.Repositories.EstudianteCarreraRepository;
 import main.Repositories.EstudianteRepositoryImpl;
 
 @Service("estudianteService")
@@ -19,7 +19,7 @@ public class EstudianteService{
 	private EstudianteRepositoryImpl estudianteRepository;
 	
 	@Autowired
-    private EstudianteCarreraRepositoryImpl estudianteCarreraRepository;
+    private EstudianteCarreraRepository estudianteCarreraRepository;
 
 	@Transactional (readOnly = true)
 	public List<EstudianteDTO> buscarAllEstudiantesOrderByApellido() throws Exception {

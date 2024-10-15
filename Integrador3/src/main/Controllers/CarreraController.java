@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import main.DTOs.CarreraDTO;
-import main.Repositories.EstudianteCarreraRepositoryImpl;
 import main.Repositories.EstudianteRepositoryImpl;
 import main.Services.CarreraService;
 

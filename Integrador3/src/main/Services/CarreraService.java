@@ -14,21 +14,21 @@ import main.DTOs.EstudiantesEnCarreraDTO;
 import main.Objects.Carrera;
 import main.Objects.Estudiante;
 import main.Objects.EstudianteCarrera;
-import main.Repositories.CarreraRepositoryImpl;
-import main.Repositories.EstudianteCarreraRepositoryImpl;
+import main.Repositories.CarreraRepository;
+import main.Repositories.EstudianteCarreraRepository;
 import main.Repositories.EstudianteRepositoryImpl;
 
 @Service("carreraService")
 public class CarreraService{
 
 	@Autowired
-	private CarreraRepositoryImpl carreraRepository;
+	private CarreraRepository carreraRepository;
 	
 	@Autowired
 	private EstudianteRepositoryImpl estudianteRepository;
 	 
 	@Autowired
-	private EstudianteCarreraRepositoryImpl carreraEstudianteRepository;
+	private EstudianteCarreraRepository carreraEstudianteRepository;
 	 
 	
 	@Transactional (readOnly = true)
@@ -62,8 +62,9 @@ public class CarreraService{
 
 		Estudiante estudiante = estudianteRepository.findById(e)
 				.orElseThrow(() -> new IllegalArgumentException("ID de Estudiante invalido:" + e));
-
-		Carrera carrera = carreraRepository.findByNombre(c)
+		
+		System.out.println("Buscando carrera: " + c);
+		Carrera carrera = carreraRepository.findByNombreIgnoreCase(c)
 				.orElseThrow(() -> new IllegalArgumentException("ID de Carrera invalido:" + c));
 
 		if (carreraEstudianteRepository.findByEstudianteAndCarrera(estudiante, carrera).isPresent()) {
@@ -82,7 +83,7 @@ public class CarreraService{
 		Estudiante estudiante = estudianteRepository.findById(e)
 				.orElseThrow(() -> new IllegalArgumentException("ID de Estudiante invalido:" + e));
 
-		Carrera carrera = carreraRepository.findByNombre(c)
+		Carrera carrera = carreraRepository.findByNombreIgnoreCase(c)
 				.orElseThrow(() -> new IllegalArgumentException("Nombre de Carrera invalido:" + c));
 
 		carreraEstudianteRepository.deleteByEstudianteAndCarrera(estudiante, carrera);
