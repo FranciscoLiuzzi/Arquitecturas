@@ -6,6 +6,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -18,7 +19,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "estudiante_carrera")
-public class EstudianteCarrera implements Serializable{
+@IdClass(EstudianteCarreraPK.class)
+public class EstudianteCarrera{
 	@Column(name = "fecha_insc")
 	private Timestamp fechaInscripcion;
 	@Column(name = "fecha_grad")

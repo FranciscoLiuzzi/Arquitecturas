@@ -40,6 +40,11 @@
 	    <artifactId>h2</artifactId>
 	    <scope>runtime</scope>
 	</dependency>
+        <dependency>
+        	<groupId>springboot.app.mascotas</groupId>
+        	<artifactId>springboot-mascotas</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
