@@ -56,15 +56,14 @@ public class CarreraService{
 	////////////////////////////////////////////////////////////////////////
 	
 	@Transactional
-	public void matricular(Integer e, String c) {
+	public void matricular(Integer e, Integer c) {
 		Objects.requireNonNull(e);
 		Objects.requireNonNull(c);
 
 		Estudiante estudiante = estudianteRepository.findById(e)
 				.orElseThrow(() -> new IllegalArgumentException("ID de Estudiante invalido:" + e));
 		
-		System.out.println("Buscando carrera: " + c);
-		Carrera carrera = carreraRepository.findByNombreIgnoreCase(c)
+		Carrera carrera = carreraRepository.findById(c)
 				.orElseThrow(() -> new IllegalArgumentException("ID de Carrera invalido:" + c));
 
 		if (carreraEstudianteRepository.findByEstudianteAndCarrera(estudiante, carrera).isPresent()) {
@@ -76,14 +75,14 @@ public class CarreraService{
 	}
 
 	@Transactional
-	public void desmatricular(Integer e, String c) {
+	public void desmatricular(Integer e, Integer c) {
 		Objects.requireNonNull(e);
 		Objects.requireNonNull(c);
 
 		Estudiante estudiante = estudianteRepository.findById(e)
 				.orElseThrow(() -> new IllegalArgumentException("ID de Estudiante invalido:" + e));
 
-		Carrera carrera = carreraRepository.findByNombreIgnoreCase(c)
+		Carrera carrera = carreraRepository.findById(c)
 				.orElseThrow(() -> new IllegalArgumentException("Nombre de Carrera invalido:" + c));
 
 		carreraEstudianteRepository.deleteByEstudianteAndCarrera(estudiante, carrera);

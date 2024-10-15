@@ -55,7 +55,7 @@ public class CarreraController {
 	 ////////////////////////////////////////////////////
 	 
 	 @PostMapping("/matricular")
-	    public ResponseEntity<?> matricular(@RequestParam Integer libreta, @RequestParam String carrera){ 
+	    public ResponseEntity<?> matricular(@RequestParam Integer libreta, @RequestParam Integer carrera){ 
 	        try{
 	            carreraService.matricular(libreta, carrera);
 	            return ResponseEntity.status(HttpStatus.OK).body("Se matriculo correctamente el estudiante con LU: " + libreta + " en la carrera: " + carrera);
@@ -65,7 +65,7 @@ public class CarreraController {
 	    }
 
 	    @PostMapping("/desmatricular")
-	    public ResponseEntity<?> desmatricular(@RequestParam Integer libreta, @RequestParam String carrera){
+	    public ResponseEntity<?> desmatricular(@RequestParam Integer libreta, @RequestParam Integer carrera){
 	        try{
 	            carreraService.desmatricular(libreta, carrera);
 	            return ResponseEntity.status(HttpStatus.OK).body("Se desmatriculo correctamente el estudiante: con LU: " + libreta + " en la carrera: " + carrera);
