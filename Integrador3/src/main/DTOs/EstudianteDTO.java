@@ -1,5 +1,9 @@
 package main.DTOs;
 
+import java.util.HashSet;
+
+import main.Objects.Estudiante;
+
 public class EstudianteDTO {
 	private String nombre;
 	private String apellido;
@@ -21,6 +25,16 @@ public class EstudianteDTO {
 		this.dni = dni;
 		this.ciudadResidencia = ciudadResidencia;
 		this.libreta = libreta;
+	}
+
+	public EstudianteDTO(Estudiante save) {
+		this.nombre = save.getNombre();
+		this.apellido = save.getApellido();
+		this.ciudadResidencia = save.getCiudad_residencia();
+		this.genero = save.getGenero();
+		this.dni = save.getDni();
+		this.libreta = save.getLibreta();
+		this.edad = save.getEdad();
 	}
 
 	public String getNombre() {

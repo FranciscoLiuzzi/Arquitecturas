@@ -12,7 +12,7 @@ import main.Objects.Estudiante;
 import main.Repositories.EstudianteRepositoryImpl;
 
 @Service("estudianteService")
-public class EstudianteService implements CRUDService<Estudiante>  {
+public class EstudianteService{
 	
 	@Autowired
 	private EstudianteRepositoryImpl estudianteRepository;
@@ -59,13 +59,11 @@ public class EstudianteService implements CRUDService<Estudiante>  {
         }
 	}
 
-	@Override
 	@Transactional
 	public List<Estudiante> findAll() throws Exception {
 		return estudianteRepository.findAll();
 	}
 
-	@Override
 	@Transactional
 	public Estudiante findById(Integer id) throws Exception {
 		try{
@@ -76,17 +74,15 @@ public class EstudianteService implements CRUDService<Estudiante>  {
         }
 	}
 
-	@Override
 	@Transactional
-	public Estudiante save(Estudiante entity) throws Exception {
+	public EstudianteDTO save(EstudianteDTO entity) throws Exception {
 		try{
-            return estudianteRepository.save(entity);
+            return new EstudianteDTO(this.estudianteRepository.save(new Estudiante(entity)));
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
 	}
 
-	@Override
 	@Transactional
 	public Estudiante update(Integer id, Estudiante entity) throws Exception {
 		try{
@@ -99,7 +95,6 @@ public class EstudianteService implements CRUDService<Estudiante>  {
         }
 	}
 
-	@Override
 	@Transactional
 	public boolean delete(Integer id) throws Exception {
 		try{

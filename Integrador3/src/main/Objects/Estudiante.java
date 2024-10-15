@@ -7,6 +7,7 @@ import java.util.Set;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import jakarta.persistence.*;
+import main.DTOs.EstudianteDTO;
 
 
 @Entity
@@ -47,6 +48,17 @@ public class Estudiante{
 		this.dni = dni;
 		this.libreta = libreta;
 		this.edad = edad;
+		this.carreras = new HashSet<>();
+	}
+
+	public Estudiante(EstudianteDTO dto) {
+		this.nombre = dto.getNombre();
+		this.apellido = dto.getApellido();
+		this.ciudadResidencia = dto.getCiudadResidencia();
+		this.genero = dto.getGenero();
+		this.dni = dto.getDni();
+		this.libreta = dto.getLibreta();
+		this.edad = dto.getEdad();
 		this.carreras = new HashSet<>();
 	}
 
