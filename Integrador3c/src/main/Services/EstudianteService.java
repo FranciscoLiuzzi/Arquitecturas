@@ -1,24 +1,17 @@
 package main.Services;
 
 import java.util.List;
-import java.util.Optional;
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
 import main.DTOs.EstudianteDTO;
-import main.Objects.Estudiante;
 import main.Repositories.EstudianteRepositoryImpl;
 
-@Service("estudianteService")
-public class EstudianteService implements CRUDService<Estudiante>  {
-	
-	@Autowired
-	private EstudianteRepositoryImpl estudianteRepository;
-	
-	@Transactional
-	public EstudianteDTO buscarEstudianteByLibreta(int libreta) {
+public class EstudianteService extends EstudianteRepositoryImpl {
+	public EstudianteService(EntityManager em) {
+		super(em);
+	}
+
+	public EstudianteDTO getEstudianteByLibreta(int libreta) {
 		this.em.getTransaction().begin();
 		String jpql = "SELECT NEW main.DTOs.EstudianteDTO(p.nombre, p.apellido, p.edad, p.ciudadResidencia, p.genero, p.dni, p.libreta) " +
 						"FROM Estudiante p WHERE p.libreta = ?1";
@@ -29,8 +22,7 @@ public class EstudianteService implements CRUDService<Estudiante>  {
 		return res;
 	}
 
-	@Transactional
-	public List<EstudianteDTO> buscarAllEstudiantesOrderByApellido() {
+	public List<EstudianteDTO> getAllEstudiantesOrderByApellido() {
 		this.em.getTransaction().begin();
 		String jpql = "SELECT NEW main.DTOs.EstudianteDTO(p.nombre, p.apellido, p.edad, p.ciudadResidencia, p.genero, p.dni, p.libreta) " +
 				  "FROM Estudiante p ORDER BY p.apellido, p.nombre";
@@ -40,9 +32,8 @@ public class EstudianteService implements CRUDService<Estudiante>  {
 		this.em.getTransaction().commit();        
 		return res;
 	}
-	
-	@Transactional
-	public List<String> buscarGeneros() {
+
+	public List<String> getGeneros() {
 		em.getTransaction().begin();
 		String jpql = "SELECT DISTINCT e.genero FROM Estudiante e";
 		TypedQuery<String> query = em.createQuery(jpql, String.class);
@@ -50,9 +41,8 @@ public class EstudianteService implements CRUDService<Estudiante>  {
 		em.getTransaction().commit();
 		return res;
 	}
-	
-	@Transactional
-	public List<EstudianteDTO> buscarEstudiantesPorGenero(String genero) {
+
+	public List<EstudianteDTO> getEstudiantesPorGenero(String genero) {
 		em.getTransaction().begin();
 		String jpql = "SELECT NEW main.DTOs.EstudianteDTO(e.nombre,e.apellido,e.edad,e.ciudadResidencia,e.genero,e.dni,e.libreta) " +
 						"FROM Estudiante e " +
@@ -62,43 +52,5 @@ public class EstudianteService implements CRUDService<Estudiante>  {
 		List<EstudianteDTO> res = query.setMaxResults(30).getResultList();
 		em.getTransaction().commit();
 		return res;
-	}
-
-	@Override
-	@Transactional
-	public List<Estudiante> findAll() throws Exception {
-		return estudianteRepository.findAll();
-	}
-
-	@Override
-	@Transactional
-	public Estudiante findById(Integer id) throws Exception {
-		try{
-            Optional<Estudiante> estudianteBuscado = estudianteRepository.findById(id);
-            return estudianteBuscado.get();
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
-	}
-
-	@Override
-	@Transactional
-	public Estudiante save(Estudiante entity) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	@Transactional
-	public Estudiante update(Integer id, Estudiante entity) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	@Transactional
-	public boolean delete(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

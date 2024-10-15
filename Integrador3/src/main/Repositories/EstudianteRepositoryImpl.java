@@ -1,58 +1,24 @@
 package main.Repositories;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-
+import org.springframework.stereotype.Repository;
+import main.DTOs.EstudianteDTO;
 import main.Objects.Estudiante;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-public class EstudianteRepositoryImpl implements dbRepository<Estudiante> {
-	protected EntityManager em;
+@Repository("estudianteRepository")
+public interface EstudianteRepositoryImpl extends JpaRepository<Estudiante, Integer> {
 
-	public EstudianteRepositoryImpl(EntityManager em) {
-		this.em = em;
-	}
-
-	@Override
-	public Estudiante save(Estudiante entity) {
-		em.getTransaction().begin();
-		if (entity.getLibreta() == null) {
-			em.persist(entity);
-		} else {
-			entity = em.merge(entity);
-		}
-		em.getTransaction().commit();
-		return entity;
-	}
-
-	@Override
-	public Estudiante findById(int id) {
-		em.getTransaction().begin();
-		Estudiante aux = em.find(Estudiante.class, id);
-		em.getTransaction().commit();
-		return aux;
-
-	}
-
-	@Override
-	public List<Estudiante> findAll() {
-		em.getTransaction().begin();
-		List<Estudiante> result;
-		String jpql = "SELECT e FROM Estudiante e";
-		TypedQuery<Estudiante> res = em.createQuery(jpql, Estudiante.class);
-		result = res.getResultList();
-		em.getTransaction().commit();
-		return result;
-	}
-
-	@Override
-	public void delete(Estudiante entity) {
-		em.getTransaction().begin();
-		if (em.contains(entity))
-			em.remove(entity);
-		else        
-			em.merge(entity);
-		em.getTransaction().commit();
-	}
+	@Query("SELECT NEW main.DTOs.EstudianteDTO(p.nombre, p.apellido, p.edad, p.ciudadResidencia, p.genero, p.dni, p.libreta) " + "FROM Estudiante p WHERE p.libreta = ?1")
+	public EstudianteDTO getEstudianteByLibreta(int libreta);
+	
+	@Query("SELECT NEW main.DTOs.EstudianteDTO(p.nombre, p.apellido, p.edad, p.ciudadResidencia, p.genero, p.dni, p.libreta) " + "FROM Estudiante p ORDER BY p.apellido, p.nombre")
+	public List<EstudianteDTO> getAllEstudiantesOrderByApellido();
+	
+	@Query("SELECT DISTINCT e.genero FROM Estudiante e")
+	public List<String> getGeneros();
+	
+	@Query("SELECT NEW main.DTOs.EstudianteDTO(e.nombre,e.apellido,e.edad,e.ciudadResidencia,e.genero,e.dni,e.libreta) " + "FROM Estudiante e " + "WHERE (e.genero = :genero)")
+	public List<EstudianteDTO> getEstudiantesPorGenero(String genero);
 }
