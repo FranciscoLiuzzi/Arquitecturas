@@ -7,6 +7,7 @@ import java.util.Set;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import jakarta.persistence.*;
+import main.DTOs.CarreraDTO;
 
 @Entity
 public class Carrera {
@@ -27,6 +28,11 @@ public class Carrera {
 
 	public Carrera(String nombre) {
 		this.nombre = nombre;
+		this.estudiantes = new HashSet<>();
+	}
+	
+	public Carrera(CarreraDTO carreraDTO) {
+		this.nombre = carreraDTO.getNombre();
 		this.estudiantes = new HashSet<>();
 	}
 
