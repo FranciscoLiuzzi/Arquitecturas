@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,7 +20,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "estudiante_carrera")
-public class EstudianteCarrera implements Serializable{
+@IdClass(EstudianteCarreraPK.class)
+public class EstudianteCarrera {
 	@Column(name = "fecha_insc")
 	private Timestamp fechaInscripcion;
 	@Column(name = "fecha_grad")
@@ -75,6 +77,4 @@ public class EstudianteCarrera implements Serializable{
 		return "EstudianteCarrera [fechaInscripcion=" + fechaInscripcion + ", fechaGraduacion=" + fechaGraduacion
 				+ ", estudiante=" + estudiante + ", carrera=" + carrera + "]";
 	}
-	
-	
 }

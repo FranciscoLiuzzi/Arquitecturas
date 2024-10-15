@@ -9,17 +9,27 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import main.DTOs.CarreraDTO;
+import main.DTOs.CarreraInscriptosGraduadosDTO;
+import main.DTOs.EstudiantesEnCarreraDTO;
 import main.Objects.Carrera;
 import main.Objects.Estudiante;
 import main.Objects.EstudianteCarrera;
 import main.Repositories.CarreraRepositoryImpl;
 import main.Repositories.EstudianteCarreraRepositoryImpl;
+import main.Repositories.EstudianteRepositoryImpl;
 
 @Service("carreraService")
 public class CarreraService{
 
 	@Autowired
 	private CarreraRepositoryImpl carreraRepository;
+	
+	@Autowired
+	private EstudianteRepositoryImpl estudianteRepository;
+	 
+	@Autowired
+	private EstudianteCarreraRepositoryImpl carreraEstudianteRepository;
+	 
 	
 	@Transactional (readOnly = true)
 	public CarreraDTO findById(Integer id) {
@@ -41,5 +51,50 @@ public class CarreraService{
 	public void delete(Integer id) {
 		carreraRepository.delete(carreraRepository.findById(id).orElseThrow(
 			() -> new IllegalArgumentException("ID de Carrera invalido:" + id)));
+	}
+	
+	////////////////////////////////////////////////////////////////////////
+	
+	@Transactional
+	public void matricular(Integer e, String c) {
+		Objects.requireNonNull(e);
+		Objects.requireNonNull(c);
+
+		Estudiante estudiante = estudianteRepository.findById(e)
+				.orElseThrow(() -> new IllegalArgumentException("ID de Estudiante invalido:" + e));
+
+		Carrera carrera = carreraRepository.findByNombre(c)
+				.orElseThrow(() -> new IllegalArgumentException("ID de Carrera invalido:" + c));
+
+		if (carreraEstudianteRepository.findByEstudianteAndCarrera(estudiante, carrera).isPresent()) {
+			throw new IllegalArgumentException("El estudiante ya esta inscripto");
+		}
+		Timestamp currentTime = new Timestamp(new Date().getTime());
+		EstudianteCarrera nuevo = new EstudianteCarrera(estudiante, carrera, currentTime, null);
+		carreraEstudianteRepository.save(nuevo);
+	}
+
+	@Transactional
+	public void desmatricular(Integer e, String c) {
+		Objects.requireNonNull(e);
+		Objects.requireNonNull(c);
+
+		Estudiante estudiante = estudianteRepository.findById(e)
+				.orElseThrow(() -> new IllegalArgumentException("ID de Estudiante invalido:" + e));
+
+		Carrera carrera = carreraRepository.findByNombre(c)
+				.orElseThrow(() -> new IllegalArgumentException("Nombre de Carrera invalido:" + c));
+
+		carreraEstudianteRepository.deleteByEstudianteAndCarrera(estudiante, carrera);
+	}
+
+	@Transactional(readOnly = true)
+	public List<CarreraInscriptosGraduadosDTO> informeCarreras() {
+		return this.carreraEstudianteRepository.informeCarreras();
+	}
+
+	@Transactional(readOnly = true)
+	public List<EstudiantesEnCarreraDTO> carrerasOrdenadas() {
+		return this.carreraRepository.carrerasOrdenadas();
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import main.DTOs.EstudianteDTO;
 import main.Objects.Estudiante;
+import main.Repositories.EstudianteCarreraRepositoryImpl;
 import main.Repositories.EstudianteRepositoryImpl;
 
 @Service("estudianteService")
@@ -16,6 +17,9 @@ public class EstudianteService{
 	
 	@Autowired
 	private EstudianteRepositoryImpl estudianteRepository;
+	
+	@Autowired
+    private EstudianteCarreraRepositoryImpl estudianteCarreraRepository;
 
 	@Transactional (readOnly = true)
 	public List<EstudianteDTO> buscarAllEstudiantesOrderByApellido() throws Exception {
@@ -65,5 +69,8 @@ public class EstudianteService{
 	            () -> new IllegalArgumentException("ID de usuario invalido:" + id)));
 	}
 	
-	//Hay que de alguna manera buscar por ciudad
+	@Transactional(readOnly = true)
+    public List<EstudianteDTO> estudiantePorCiudadDeResidencia(String carrera, String ciudad) {
+        return estudianteCarreraRepository.buscarPorCarrerasYCiudadResidencia(carrera, ciudad);
+    }
 }

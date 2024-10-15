@@ -3,6 +3,7 @@ package main.Repositories;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import main.DTOs.EstudiantesEnCarreraDTO;
 import main.Objects.Carrera;
@@ -12,7 +13,12 @@ public interface CarreraRepositoryImpl extends JpaRepository<Carrera, Integer>{
 
 	Optional<Carrera> findByNombre(String nombre);
 	
-//	List<EstudiantesEnCarreraDTO> carrerasOrdenadas();
+	@Query("SELECT new main.DTOs.EstudiantesEnCarreraDTO(c.nombre, COUNT(DISTINCT ec.estudiante) AS cantEstudiantes) " +
+            "FROM EstudianteCarrera ec " +
+            "JOIN ec.carrera c " +
+            "GROUP BY ec.carrera " +
+            "ORDER BY cantEstudiantes DESC")
+	 public List<EstudiantesEnCarreraDTO> carrerasOrdenadas();
 	
 //	@Override
 //	public List<Carrera> findAll() {
