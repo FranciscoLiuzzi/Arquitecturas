@@ -19,7 +19,7 @@ public class CarreraRepositoryCustomImpl implements CarreraRepositoryCustom{
 
     public List<EstudiantesEnCarreraDTO> carrerasOrdenadas(){
         return entityManager.createQuery(
-            "SELECT NEW main.DTOs.InformeCarreraCantEstudiantesDTO(c.nombre, COUNT(DISTINCT ec.estudiante) AS cantEstudiantes) " +
+            "SELECT NEW main.DTOs.EstudiantesEnCarreraDTO(c.nombre, COUNT(DISTINCT ec.estudiante) AS cantEstudiantes) " +
                         "FROM EstudianteCarrera ec " +
                         "JOIN ec.carrera c " +
                         "GROUP BY ec.carrera " +

@@ -1,42 +1,54 @@
 package main.DTOs;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class CarreraInscriptosGraduadosDTO {
 	private String carrera;
-	private Date año;
-	private Long inscriptos;
-	private Long graduados;
+	private Integer año;
+	private int inscriptos;
+	private int graduados;
+
+	public CarreraInscriptosGraduadosDTO() {}
 	
-	public CarreraInscriptosGraduadosDTO() {
-		super();
-	}
-	
-	public CarreraInscriptosGraduadosDTO(String carrera, Date año, Long inscriptos, Long graduados) {
+	public CarreraInscriptosGraduadosDTO(String carrera, Integer año, BigDecimal inscriptos, BigDecimal graduados) {
 		this.carrera = carrera;
 		this.año = año;
-		this.inscriptos = inscriptos;
-		this.graduados = graduados;
+		this.inscriptos = inscriptos.intValue();
+		this.graduados = graduados.intValue();
 	}
 
-	public String getNombreCarrera() {
+	public String getCarrera() {
 		return carrera;
 	}
 
-	public long getCantInscriptos() {
-		return inscriptos;
+	public void setCarrera(String carrera) {
+		this.carrera = carrera;
 	}
 
-	public long getCantGraduados() {
-		return graduados;
-	}
-
-	public Date getAño() {
+	public Integer getAño() {
 		return año;
 	}
 
-	@Override
-	public String toString() {
-		return "Carrera: " + carrera + ", " + año + ", Inscriptos: " + inscriptos + ", Graduados: " + graduados;
+	public void setAño(Integer año) {
+		this.año = año;
 	}
+
+	public int getInscriptos() {
+		return inscriptos;
+	}
+
+	public void setInscriptos(int inscriptos) {
+		this.inscriptos = inscriptos;
+	}
+
+	public int getGraduados() {
+		return graduados;
+	}
+
+	public void setGraduados(int graduados) {
+		this.graduados = graduados;
+	}
+	
+	
 }

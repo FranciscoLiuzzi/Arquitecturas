@@ -25,17 +25,20 @@ public class EstudianteCarreraRepositoryCustomImpl implements EstudianteCarreraR
     @SuppressWarnings("unchecked")
     public List<CarreraInscriptosGraduadosDTO> informeCarreras() {
         return entityManager.createNativeQuery(
-            "SELECT nombre AS carrera, Año AS año, SUM(Inscriptos) AS inscriptos, SUM(Graduados) AS graduados " +
-			"FROM " +
-			"((SELECT id, nombre, YEAR(fecha_insc) AS Año, COUNT(*) AS Inscriptos, 0 AS Graduados " +
-			"FROM carrera JOIN estudiante_carrera on carrera.id = estudiante_carrera.carrera_id " +
-			"GROUP BY carrera.id, YEAR(estudiante_carrera.fecha_insc)) " +
-			"UNION " +
-			"(SELECT id, nombre, YEAR(fecha_grad) AS Año,0 AS Inscriptos, COUNT(*) AS Graduados " +
-			"FROM carrera JOIN estudiante_carrera on id = carrera_id WHERE !ISNULL(fecha_grad) " +
-			"GROUP BY id, YEAR(fecha_grad))) u " +
-			"GROUP BY nombre, Año " +
-			"ORDER BY nombre, Año",
+            "SELECT nombre AS carrera, Año AS año, SUM(Inscriptos) AS inscriptos, SUM(Graduados) AS graduados \r\n"
+            + "FROM \r\n"
+            + "((SELECT id, nombre, YEAR(fecha_insc) AS Año, COUNT(*) AS Inscriptos, 0 AS Graduados \r\n"
+            + "FROM carrera \r\n"
+            + "JOIN estudiante_carrera ON carrera.id = estudiante_carrera.carrera_id \r\n"
+            + "GROUP BY carrera.id, YEAR(estudiante_carrera.fecha_insc)) \r\n"
+            + "UNION \r\n"
+            + "(SELECT id, nombre, YEAR(fecha_grad) AS Año, 0 AS Inscriptos, COUNT(*) AS Graduados \r\n"
+            + "FROM carrera \r\n"
+            + "JOIN estudiante_carrera ON id = carrera_id \r\n"
+            + "WHERE fecha_grad IS NOT NULL \r\n"
+            + "GROUP BY id, YEAR(fecha_grad))) u \r\n"
+            + "GROUP BY nombre, Año \r\n"
+            + "ORDER BY nombre, Año;",
             CarreraInscriptosGraduadosDTO.class
         ).getResultList();
     }
