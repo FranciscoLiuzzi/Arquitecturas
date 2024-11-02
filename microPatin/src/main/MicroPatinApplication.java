@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootEstudiantesApplication {
+public class MicroPatinApplication {
 	public static void main (String[] args) {
-		SpringApplication.run(SpringbootEstudiantesApplication.class, args);
+		SpringApplication.run(MicroPatinApplication.class, args);
 	}
 }
