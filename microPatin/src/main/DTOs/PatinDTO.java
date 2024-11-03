@@ -11,7 +11,7 @@ public class PatinDTO {
     private int uso;
     private int pausa;
     
-    
+    //CONSTRUCTORES
     
 	public PatinDTO(Patin patin) {
 		this.patinId = patin.getPatinId();
@@ -31,7 +31,9 @@ public class PatinDTO {
 		this.uso = uso;
 		this.pausa = pausa;		
 	}
-
+	
+	//GET&SET
+	
 	public long getPatinId() {
 		return patinId;
 	}

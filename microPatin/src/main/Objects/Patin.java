@@ -72,6 +72,11 @@ public class Patin {
 		this.pausa = dto.getPausa();
 	}
 	
+	public double calcularDistancia(Double x,Double y) {
+		return y;
+		//anda a saber como hago esto
+	}
+	
 	//GET&SET
 	
 	public String getX() {
