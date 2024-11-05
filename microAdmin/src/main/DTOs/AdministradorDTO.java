@@ -1,50 +1,37 @@
-package main.Objects;
+package main.DTOs;
 
-import jakarta.persistence.*;
-import main.DTOs.AdministradorDTO;
+import main.Objects.Administrador;
 
-@Entity
-@Table(name = "staff")
-public class Administrador {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="admin_id")
-	private long adminId;
-
-	@Column(name="rol")
-	private String rol;
-	
-	@Column(name="nombre")
+public class AdministradorDTO {
 	private String nombre;
-	
-	@Column(name="apellido")
 	private String apellido;
-	
-	@Column(name="nro_celular")
 	private long nroCelular;
-	
-	@Column(name="email")
 	private String email;
-	
-	@Column(name="password")
+	private String rol;
 	private String password;
-
+	
 	//CONSTRUCTORES
-
-	public Administrador(){
-		super();
+	
+	public AdministradorDTO(Administrador admin) {
+		this.nombre = admin.getNombre();
+		this.apellido = admin.getApellido();
+		this.nroCelular = admin.getNroCelular();
+		this.email = admin.getEmail();
+		this.rol = admin.getRol();
+		this.password = admin.getPassword();
 	}
 
-	public Administrador(String rol, String nombre, String apellido, long nroCelular, String email, String password) {
+	public AdministradorDTO(String rol, String nombre, String apellido, long nroCelular, String email, String password) {
+		
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.nroCelular = nroCelular;
-		this.email = email;	
+		this.email = email;
 		this.rol = rol;
 		this.password = password;
 	}
 
-	public Administrador(AdministradorDTO dto){
+	public AdministradorDTO(AdministradorDTO dto) {
 		this.nombre = dto.getNombre();
 		this.apellido = dto.getApellido();
 		this.nroCelular = dto.getNroCelular();
@@ -52,17 +39,9 @@ public class Administrador {
 		this.rol = dto.getRol();
 		this.password = dto.getPassword();
 	}
-	
+
 	//GET&SET
-
-	public String getRol() {
-		return rol;
-	}
-
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -95,15 +74,19 @@ public class Administrador {
 		this.email = email;
 	}
 
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public long getAdminId() {
-		return adminId;
 	}
 }
