@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import main.DTOs.AdministradorDTO;
 
 @Entity
+@Data
 @Table(name = "staff")
 public class Administrador {
 	@Id
