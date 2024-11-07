@@ -1,7 +1,11 @@
 package main.DTOs;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import main.Objects.Administrador;
 
+@Getter
+@RequiredArgsConstructor
 public class AdministradorDTO {
 	private String nombre;
 	private String apellido;

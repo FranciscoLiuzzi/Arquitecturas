@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 import main.Objects.Factura;
 
+@Getter
+@RequiredArgsConstructor
 public class FacturaDTO {
 	private long facturaId;
 	private Timestamp facturaFecha;
