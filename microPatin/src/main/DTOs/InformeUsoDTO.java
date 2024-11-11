@@ -1,7 +1,11 @@
 package main.DTOs;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import main.Objects.Patin;
 
+@Getter
+@RequiredArgsConstructor
 public class InformeUsoDTO {
 	 private long patinId;
     private int uso;
@@ -22,38 +26,4 @@ public class InformeUsoDTO {
         this.uso = tiempoDeUso;
         this.pausa = tiempoEnPausa;
     }
-
-    //GET&SET
-    
-	public long getPatinId() {
-		return patinId;
-	}
-
-	public void setPatinId(long patinId) {
-		this.patinId = patinId;
-	}
-
-	public int getUso() {
-		return uso;
-	}
-
-	public void setUso(int uso) {
-		this.uso = uso;
-	}
-
-	public int getPausa() {
-		return pausa;
-	}
-
-	public void setPausa(int pausa) {
-		this.pausa = pausa;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 }

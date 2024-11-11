@@ -17,15 +17,15 @@ public class PatinRepositoryCustomImpl implements PatinRepositoryCustom{
 	@SuppressWarnings("unchecked")
 	public List<Patin> getTiempo() {
 		return entityManager.createNativeQuery(
-			"SELECT * FROM patin ORDER BY (uso + pausa) DESC",Patin.class).getResultList();
+			"SELECT * FROM Patin ORDER BY (uso + pausa) DESC",Patin.class).getResultList();
 	}
     
     public InformeEstadoDTO getCantidadOperativosMantenimiento(){
 		int monopatinesOperativos = ((Number) entityManager.createNativeQuery(
-			"Select COUNT(*) From patin WHERE estado LIKE 'Libre' OR estado LIKE 'Ocupado'"
+			"Select COUNT(*) From Patin WHERE estado LIKE 'Libre' OR estado LIKE 'Ocupado'"
 		).getSingleResult()).intValue();
 		int monopatinesMantenimiento = ((Number) entityManager.createNativeQuery(
-			"Select COUNT(*) From patin WHERE estado LIKE 'Mantenimiento'"
+			"Select COUNT(*) From Patin WHERE estado LIKE 'Mantenimiento'"
 		).getSingleResult()).intValue();
 		return new InformeEstadoDTO(monopatinesMantenimiento,monopatinesOperativos);
 	}

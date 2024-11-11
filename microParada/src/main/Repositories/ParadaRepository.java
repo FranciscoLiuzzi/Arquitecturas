@@ -8,6 +8,7 @@ import main.Objects.Parada;
 
 @Repository ("paradaRepository")
 public interface ParadaRepository extends JpaRepository<Parada, Long> {
-	@Query("SELECT s FROM Station s WHERE x = ?2 AND y = ?1")
+	
+	@Query("SELECT p FROM Parada p WHERE x = ?1 AND y = ?2")
     Optional<Parada> findByXAndY(String x, String y);
 }

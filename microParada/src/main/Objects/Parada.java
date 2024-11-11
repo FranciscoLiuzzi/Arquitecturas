@@ -1,19 +1,22 @@
 package main.Objects;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import main.DTOs.ParadaDTO;
 
 @Entity
+@Data
+@Table(name = "parada")
 public class Parada {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="parada_id")
-	private long stationId;
+	private long paradaId;
 	
-	@Column(name = "latitud")
+	@Column(name = "x")
 	private String x;
 	
-	@Column(name = "longitud")
+	@Column(name = "y")
 	private String y;
 
 	//CONSTRUCTORES
@@ -31,23 +34,5 @@ public class Parada {
 	public Parada(ParadaDTO dto){
 		this.x = dto.getX();
 		this.y = dto.getY();
-	}
-
-	//GET&SET
-	
-	public String getX() {
-		return x;
-	}
-
-	public void setX(String x) {
-		this.x = x;
-	}
-
-	public String getY() {
-		return y;
-	}
-
-	public void setY(String y) {
-		this.y = y;
 	}
 }

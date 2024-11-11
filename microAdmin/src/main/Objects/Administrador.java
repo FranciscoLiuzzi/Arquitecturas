@@ -1,6 +1,7 @@
 package main.Objects;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import main.DTOs.AdministradorDTO;
 
 @Entity
@@ -52,59 +53,5 @@ public class Administrador {
 		this.email = dto.getEmail();
 		this.rol = dto.getRol();
 		this.password = dto.getPassword();
-	}
-	
-	//GET&SET
-
-	public String getRol() {
-		return rol;
-	}
-
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	public long getNroCelular() {
-		return nroCelular;
-	}
-
-	public void setNroCelular(long nroCelular) {
-		this.nroCelular = nroCelular;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public long getAdminId() {
-		return adminId;
 	}
 }

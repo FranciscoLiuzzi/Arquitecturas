@@ -1,8 +1,9 @@
 package main.DTOs;
 
 import java.sql.Timestamp;
-
 import main.Objects.Factura;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
@@ -26,39 +27,5 @@ public class FacturaDTO {
 		this.facturaFecha = factura.getFacturaFecha();
 		this.monto = factura.getMonto();
 		this.descripcion = factura.getDescripcion();
-	}
-
-	//GET&SET
-	
-	public long getFacturaId() {
-		return facturaId;
-	}
-
-	public void setFacturaId(long facturaId) {
-		this.facturaId = facturaId;
-	}
-
-	public Timestamp getFacturaFecha() {
-		return facturaFecha;
-	}
-
-	public void setFacturaFecha(Timestamp facturaFecha) {
-		this.facturaFecha = facturaFecha;
-	}
-
-	public Double getMonto() {
-		return monto;
-	}
-
-	public void setMonto(Double monto) {
-		this.monto = monto;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 }

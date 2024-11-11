@@ -1,9 +1,11 @@
 package main.Objects;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import main.DTOs.PatinDTO;
 
 @Entity
+@Data
 @Table(name = "patin")
 public class Patin {
 	@Id
@@ -72,62 +74,19 @@ public class Patin {
 		this.pausa = dto.getPausa();
 	}
 	
-	public double calcularDistancia(Double x,Double y) {
-		return y;
-		//anda a saber como hago esto
-	}
-	
-	//GET&SET
-	
-	public String getX() {
-		return x;
-	}
+	public double calcularDistancia(Double xdestino,Double ydestino) {
+		int radioTierra = 6371; // Radio de la Tierra en km
 
-	public void setX(String x) {
-		this.x = x;
-	}
+        double dLat = Math.toRadians(xdestino - Double.parseDouble(x));
+        double dLon = Math.toRadians(ydestino - Double.parseDouble(y));
 
-	public String getY() {
-		return y;
-	}
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                   Math.cos(Math.toRadians(Double.parseDouble(x))) * Math.cos(Math.toRadians(xdestino)) *
+                   Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
-	public void setY(String y) {
-		this.y = y;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public double getKm() {
-		return km;
-	}
-
-	public void setKm(double km) {
-		this.km = km;
-	}
-
-	public int getUso() {
-		return uso;
-	}
-
-	public void setUso(int uso) {
-		this.uso = uso;
-	}
-
-	public int getPausa() {
-		return pausa;
-	}
-
-	public void setPausa(int pausa) {
-		this.pausa = pausa;
-	}
-
-	public long getPatinId() {
-		return patinId;
-	}
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return radioTierra * c; // Distancia en km
+        
+        //Aparentemente asi? veremos...
+    }
 }

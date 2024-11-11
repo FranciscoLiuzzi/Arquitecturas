@@ -1,7 +1,11 @@
 package main.DTOs;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import main.Objects.Patin;
 
+@Getter
+@RequiredArgsConstructor
 public class InformeKmUsoDTO {
     private long patinId;
     private double km;
@@ -26,30 +30,4 @@ public class InformeKmUsoDTO {
         this.km = km;
         this.uso = uso;
     }
-    
-    //GET&SET
-    
-	public double getKm() {
-		return km;
-	}
-
-	public void setKm(double km) {
-		this.km = km;
-	}
-
-	public int getUso() {
-		return uso;
-	}
-
-	public void setUso(int uso) {
-		this.uso = uso;
-	}
-
-	public long getPatinId() {
-		return patinId;
-	}
-
-	public void setPatinId(long patinId) {
-		this.patinId = patinId;
-	}
 }

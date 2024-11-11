@@ -2,10 +2,12 @@ package main.Objects;
 
 import java.sql.Timestamp;
 import jakarta.persistence.*;
+import lombok.Data;
 import main.DTOs.FacturaDTO;
 import main.DTOs.NFacturaDTO;
 
 @Entity
+@Data
 @Table(name = "factura")
 public class Factura {
 	@Id
@@ -42,35 +44,5 @@ public class Factura {
 		this.facturaFecha = dto.getFacturaFecha();
 		this.monto = dto.getMonto();
 		this.descripcion = dto.getDescripcion();
-	}
-	
-	//GET&SET
-	
-	public Timestamp getFacturaFecha() {
-		return facturaFecha;
-	}
-
-	public void setFacturaFecha(Timestamp facturaFecha) {
-		this.facturaFecha = facturaFecha;
-	}
-
-	public Double getMonto() {
-		return monto;
-	}
-
-	public void setMonto(Double monto) {
-		this.monto = monto;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public long getFacturaId() {
-		return facturaId;
 	}
 }

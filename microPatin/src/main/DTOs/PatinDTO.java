@@ -1,7 +1,11 @@
 package main.DTOs;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import main.Objects.Patin;
 
+@Getter
+@RequiredArgsConstructor
 public class PatinDTO {
 	private long patinId;
 	private String x;
@@ -30,63 +34,5 @@ public class PatinDTO {
 		this.km = km;
 		this.uso = uso;
 		this.pausa = pausa;		
-	}
-	
-	//GET&SET
-	
-	public long getPatinId() {
-		return patinId;
-	}
-
-	public void setPatinId(long patinId) {
-		this.patinId = patinId;
-	}
-
-	public String getX() {
-		return x;
-	}
-
-	public void setX(String x) {
-		this.x = x;
-	}
-
-	public String getY() {
-		return y;
-	}
-
-	public void setY(String y) {
-		this.y = y;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public double getKm() {
-		return km;
-	}
-
-	public void setKm(double km) {
-		this.km = km;
-	}
-
-	public int getUso() {
-		return uso;
-	}
-
-	public void setUso(int uso) {
-		this.uso = uso;
-	}
-
-	public int getPausa() {
-		return pausa;
-	}
-
-	public void setPausa(int pausa) {
-		this.pausa = pausa;
 	}
 }

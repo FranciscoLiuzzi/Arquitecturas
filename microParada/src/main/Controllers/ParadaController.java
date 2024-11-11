@@ -46,7 +46,7 @@ public class ParadaController {
 	 public ResponseEntity<?> delete(@PathVariable Long paradaId){
 	     try{
 	    	 paradaService.delete(paradaId);
-	         return ResponseEntity.status(HttpStatus.OK).body("Se elimino correctamente la carrera con id: " + paradaId);
+	         return ResponseEntity.status(HttpStatus.OK).body("Se elimino la parada id: " + paradaId);
 	     }catch (Exception e){
 	         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. No se pudo eliminar.\"\n\"error\":\""+e.getMessage()+"\"}");
 	     }
@@ -56,9 +56,9 @@ public class ParadaController {
 	 public ResponseEntity<?> update(@PathVariable long stationId, @RequestBody ParadaDTO entity){
        try{
     	   paradaService.update(stationId, entity);
-            return ResponseEntity.status(HttpStatus.OK).body("Se actualizaron correctamente los datos de la parada");
+            return ResponseEntity.status(HttpStatus.OK).body("Se actualizo la parada");
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. No se pudieron actualizar los datos de la parada.\"\n\"error\":\"" + e.getMessage()+"\"}");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. No se pudo actualizar.\"\n\"error\":\"" + e.getMessage()+"\"}");
         }
     } 
 	 

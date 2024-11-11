@@ -1,9 +1,7 @@
 package main.Services;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -19,8 +17,6 @@ import main.DTOs.ParadaDTO;
 import main.DTOs.PatinDTO;
 import main.Objects.Patin;
 import main.Repositories.PatinRepository;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import org.springframework.web.client.RestTemplate;
 
 @Service("patinService")
@@ -28,6 +24,9 @@ public class PatinService{
 
 	@Autowired
 	private PatinRepository patinRepository;
+	
+	@Autowired
+	RestTemplate restTemplate = new RestTemplate();
 	
 	//CRUD
 	
@@ -64,7 +63,7 @@ public class PatinService{
 	////////////////////////////////////////////////////////////////////////
 	
 	@Transactional
-	public List<InformeKmDTO> findByKilometros(){
+	public List<InformeKmDTO> findByKm(){
 		return this.patinRepository.findAllByOrderByKmDesc().stream().map(InformeKmDTO::new ).collect(Collectors.toList());
 	}
 
@@ -74,7 +73,7 @@ public class PatinService{
 	}
 	
 	@Transactional(readOnly = true)
-    public List<InformeKmUsoDTO> findByKilometrosConTiempoUso() {
+    public List<InformeKmUsoDTO> findByKmConUso() {
         List<PatinDTO> patines = patinRepository.findAll().stream().map(PatinDTO::new).collect(Collectors.toList());
 		List<InformeKmUsoDTO> patinesRes = new ArrayList<>();
 		for (PatinDTO patin : patines) {
@@ -95,22 +94,22 @@ public class PatinService{
 	}
 
 	@Transactional(readOnly = true)
-	public List<Patin> getScootersCercanos(Double latitud, Double longitud){
+	public List<Patin> getPatinesCercanos(Double x, Double y){
 		List<Patin> patines = this.patinRepository.findAll();
 		List<Patin> resultado = new ArrayList<Patin>();
 		for(Patin patin : patines){
-			if(patin.calcularDistancia(latitud,longitud) <= 1){//mayor a 5 kilometros
+			if(patin.calcularDistancia(x,y) <= 1){ //Mayor a 5 km
 				resultado.add(patin);
 			}
 		}
 		return resultado;
 	}
 
-	public ParadaDTO scooterEnEstacion(long scooterId) throws Exception {
+	public ParadaDTO patinEnParada(long scooterId) throws Exception {
 
 		PatinDTO patin = this.findById(scooterId);
 
-		String estacionUrl = "http://localhost:8001/estaciones/verificar/latitud/" + patin.getX() +  "/longitud/" + patin.getY();
+		String estacionUrl = "http://localhost:8001/estaciones/verificar/x/" + patin.getX() +  "/y/" + patin.getY();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
 		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);

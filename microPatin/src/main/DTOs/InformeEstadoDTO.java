@@ -1,5 +1,10 @@
 package main.DTOs;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public class InformeEstadoDTO {
     private int mantenimiento;
 	private int operativos;
@@ -8,24 +13,6 @@ public class InformeEstadoDTO {
 	
 	public InformeEstadoDTO(int mantenimiento, int operativos) {
 		this.mantenimiento = mantenimiento;
-		this.operativos = operativos;
-	}
-
-	//GET&SET
-	
-	public int getMantenimiento() {
-		return mantenimiento;
-	}
-
-	public void setMantenimiento(int mantenimiento) {
-		this.mantenimiento = mantenimiento;
-	}
-
-	public int getOperativos() {
-		return operativos;
-	}
-
-	public void setOperativos(int operativos) {
 		this.operativos = operativos;
 	}
 }

@@ -1,5 +1,10 @@
 package main.DTOs;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public class NPatinDTO {
 	private String x;
 	private String y;
@@ -17,55 +22,5 @@ public class NPatinDTO {
 		this.km = km;
 		this.tiempoUso = tiempoUso;
 		this.tiempoPausa = tiempoPausa;		
-	}
-	
-	//GET&SET
-
-	public String getX() {
-		return x;
-	}
-
-	public void setX(String x) {
-		this.x = x;
-	}
-
-	public String getY() {
-		return y;
-	}
-
-	public void setY(String y) {
-		this.y = y;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public double getKm() {
-		return km;
-	}
-
-	public void setKm(double km) {
-		this.km = km;
-	}
-
-	public int getTiempoUso() {
-		return tiempoUso;
-	}
-
-	public void setTiempoUso(int tiempoUso) {
-		this.tiempoUso = tiempoUso;
-	}
-
-	public int getTiempoPausa() {
-		return tiempoPausa;
-	}
-
-	public void setTiempoPausa(int tiempoPausa) {
-		this.tiempoPausa = tiempoPausa;
 	}
 }

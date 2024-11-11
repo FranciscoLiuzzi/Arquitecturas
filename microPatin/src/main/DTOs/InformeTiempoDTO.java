@@ -1,7 +1,11 @@
 package main.DTOs;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import main.Objects.Patin;
 
+@Getter
+@RequiredArgsConstructor
 public class InformeTiempoDTO {
 	private long patinId;
     private int tiempoTotal;
@@ -19,30 +23,4 @@ public class InformeTiempoDTO {
         this.estado = estado;
         this.tiempoTotal = tiempoDeUso + tiempoEnPausa;
     }
-
-    //GET&SET
-    
-	public long getPatinId() {
-		return patinId;
-	}
-
-	public void setPatinId(long patinId) {
-		this.patinId = patinId;
-	}
-
-	public int getTiempoTotal() {
-		return tiempoTotal;
-	}
-
-	public void setTiempoTotal(int tiempoTotal) {
-		this.tiempoTotal = tiempoTotal;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 }

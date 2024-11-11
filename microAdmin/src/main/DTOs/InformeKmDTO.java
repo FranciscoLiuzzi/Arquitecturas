@@ -1,5 +1,10 @@
 package main.DTOs;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public class InformeKmDTO {
 	private long patinId;
     private String estado;
@@ -7,7 +12,7 @@ public class InformeKmDTO {
     
     //CONSTRUCTORES
     
-    public InformeKmDTO(Patin patin) {
+    public InformeKmDTO(PatinDTO patin) {
         this.patinId = patin.getPatinId();
         this.estado = patin.getEstado();
         this.km = patin.getKm();
@@ -17,30 +22,4 @@ public class InformeKmDTO {
         this.estado = estado;
         this.km = km;
     }
-    
-    //GET&SET
-    
-	public long getPatinId() {
-		return patinId;
-	}
-
-	public void setPatinId(long patinId) {
-		this.patinId = patinId;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public double getKm() {
-		return km;
-	}
-
-	public void setKm(double km) {
-		this.km = km;
-	}
 }

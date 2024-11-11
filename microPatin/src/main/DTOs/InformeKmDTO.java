@@ -1,7 +1,11 @@
 package main.DTOs;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import main.Objects.Patin;
 
+@Getter
+@RequiredArgsConstructor
 public class InformeKmDTO {
     private long patinId;
     private String estado;
@@ -19,22 +23,4 @@ public class InformeKmDTO {
         this.estado = estado;
         this.km = km;
     }
-    
-    //GET&SET
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public double getKm() {
-		return km;
-	}
-
-	public void setKm(double km) {
-		this.km = km;
-	}
 }
