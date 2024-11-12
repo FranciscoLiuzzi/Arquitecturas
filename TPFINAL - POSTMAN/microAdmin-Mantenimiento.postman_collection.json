@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "fed5aaa9-71ed-469c-91aa-84738a65d369",
+		"name": "microAdmin/Mantenimiento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39035904"
+	},
+	"item": [
+		{
+			"name": "actualizarEstado",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/mantenimiento/patines/actualizarEstado/{{{patinId}}/estado/{{{estado}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mantenimiento",
+						"patines",
+						"actualizarEstado",
+						"{{{patinId}}",
+						"estado",
+						"{{{estado}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "patinId",
+			"value": "patinId"
+		},
+		{
+			"key": "estado",
+			"value": "estado"
+		}
+	]
+}

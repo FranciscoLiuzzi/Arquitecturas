@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "713db6a4-c32d-4150-9c86-2631c2ab1fe9",
+		"name": "microPatin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39035904"
+	},
+	"item": [
+		{
+			"name": "getAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/{{{patinId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"{{{patinId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/eliminar/{{patinId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"eliminar",
+						"{{patinId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/actualizar/{{patinId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"actualizar",
+						"{{patinId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patinEnParada",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/parada/{{patinId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"parada",
+						"{{patinId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getInformeByKm",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/informe/km/sinUso",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"informe",
+						"km",
+						"sinUso"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getInformeByKmConUso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/informe/km/conUso",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"informe",
+						"km",
+						"conUso"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getInformeByUso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/informe/tiempoUso",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"informe",
+						"tiempoUso"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getInformeByTiempoTotal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/informe/tiempoTotal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"informe",
+						"tiempoTotal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getInformeOperativosMantenimiento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/informe/cantidadOperativosMantenimiento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"informe",
+						"cantidadOperativosMantenimiento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCercanos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patines/X/{{{x}}/Y/{{{y}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patines",
+						"X",
+						"{{{x}}",
+						"Y",
+						"{{{y}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "patinId",
+			"value": "patinId"
+		},
+		{
+			"key": "x",
+			"value": "x"
+		},
+		{
+			"key": "y",
+			"value": "y"
+		}
+	]
+}

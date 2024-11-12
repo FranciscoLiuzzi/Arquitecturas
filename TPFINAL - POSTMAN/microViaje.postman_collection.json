@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "631f7886-37a1-4e30-9581-e3b7d6b91b75",
+		"name": "microViaje",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39035904"
+	},
+	"item": [
+		{
+			"name": "getAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/viajes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viajes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/viajes/alta/usuario/{{idUser}}/patin/{{idPatin}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viajes",
+						"alta",
+						"usuario",
+						"{{idUser}}",
+						"patin",
+						"{{idPatin}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/viajes/buscar/{{viajeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viajes",
+						"buscar",
+						"{{viajeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/viajes/eliminar/{{viajeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viajes",
+						"eliminar",
+						"{{viajeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/viajes/actualizar/{{viajeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viajes",
+						"actualizar",
+						"{{viajeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "travelEnd",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/viajes/finalizar/{{viajeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viajes",
+						"finalizar",
+						"{{viajeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveTarifa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tarifaId\": 1,\r\n    \"fecha\": \"2024-11-01T10:30:00.000Z\",\r\n    \"fija\": 100.0,\r\n    \"completa\": 200.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/viajes/tarifas/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viajes",
+						"tarifas",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "idUser",
+			"value": "iduser"
+		},
+		{
+			"key": "idPatin",
+			"value": "idpatin"
+		},
+		{
+			"key": "viajeId",
+			"value": "viajeId"
+		}
+	]
+}

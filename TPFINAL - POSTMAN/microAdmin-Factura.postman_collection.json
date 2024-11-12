@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "2295d6fc-6bae-478b-b29f-d0c7b604ce97",
+		"name": "microAdmin/Factura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39035904"
+	},
+	"item": [
+		{
+			"name": "getAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/administracion/facturacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"administracion",
+						"facturacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOne",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/administracion/facturacion/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"administracion",
+						"facturacion",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/administracion/facturacion/nueva",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"administracion",
+						"facturacion",
+						"nueva"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getFacturacion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/administracion/facturacion/fechaDesde/{{{fechaDesde}}/fechaHasta/{{{fechaHasta}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"administracion",
+						"facturacion",
+						"fechaDesde",
+						"{{{fechaDesde}}",
+						"fechaHasta",
+						"{{{fechaHasta}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "}"
+		},
+		{
+			"key": "fechaDesde",
+			"value": "fechaDesde"
+		},
+		{
+			"key": "fechaHasta",
+			"value": "fechaHasta"
+		}
+	]
+}
