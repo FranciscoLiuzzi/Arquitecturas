@@ -10,6 +10,6 @@ import main.Objects.Cuenta;
 @Repository ("cuentaRepository")
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 	
-	@Query("SELECT NEW com.microuseraccount.dto.AccountDTO(a) FROM Account a JOIN a.usuarios ua JOIN ua.user u WHERE u.userId = ?1")
+	@Query("SELECT NEW main.DTOs.CuentaDTO(a) FROM Cuenta a JOIN a.usuarios ua JOIN ua.usuario u WHERE u.usuarioId = ?1")
 	public List<CuentaDTO> findByUsuarioId(Long id);
 }

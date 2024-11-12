@@ -28,7 +28,7 @@ public class Usuario {
 	private long usuarioId;
 
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	private Set<CuentaUsuario> cuentas;
 	
 	//CONSTRUCTORES

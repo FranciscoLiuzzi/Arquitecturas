@@ -29,7 +29,7 @@ public class Cuenta {
 	private Double saldo;
 	
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cuenta", fetch = FetchType.LAZY)
     private Set<CuentaUsuario> usuarios;
     
     //CONSTRUCTORES
