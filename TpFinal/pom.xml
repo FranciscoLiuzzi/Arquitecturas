@@ -3,4 +3,12 @@
   <groupId>com.tp</groupId>
   <artifactId>TpFinal</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>microAdmin</module>
+  	<module>microParada</module>
+  	<module>microPatin</module>
+  	<module>microUser</module>
+  	<module>microViaje</module>
+  </modules>
 </project>
