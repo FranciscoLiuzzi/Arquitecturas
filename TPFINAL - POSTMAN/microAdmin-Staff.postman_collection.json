@@ -54,6 +54,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Lautaro\",\r\n  \"apellido\": \"Etchelet\",\r\n  \"nroCelular\": 2262749121,\r\n  \"email\": \"lau.etch@yahoo.com\",\r\n  \"rol\": \"admin\",\r\n  \"password\": \"lasuperpass\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/administracion/staff/alta",
 					"protocol": "http",
@@ -120,6 +129,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"EvilLautaro\",\r\n  \"apellido\": \"telehctE\",\r\n  \"nroCelular\": 2262859102,\r\n  \"email\": \"EvilLautaro.Etch@bing.com\",\r\n  \"rol\": \"admin\",\r\n  \"password\": \"contraseña\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/administracion/staff/actualizar/{{staffId}}",
 					"protocol": "http",

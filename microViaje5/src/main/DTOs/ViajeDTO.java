@@ -8,7 +8,6 @@ import main.Objects.Viaje;
 @Getter
 @RequiredArgsConstructor
 public class ViajeDTO {
-	
 	private long viajeId;
 	private long usuarioId;
 	private long patinId;

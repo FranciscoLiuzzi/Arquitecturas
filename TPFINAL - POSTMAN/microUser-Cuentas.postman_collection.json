@@ -51,6 +51,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cuentaId\": 1,\r\n  \"fechaAlta\": \"2024-11-15T10:00:00\",\r\n  \"habilitada\": true,\r\n  \"idMPago\": \"MP_12345\",\r\n  \"saldo\": 1500.0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/cuentas/alta",
 					"protocol": "http",
@@ -134,6 +143,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cuentaId\": 2,\r\n  \"fechaAlta\": \"2024-11-15T10:00:00\",\r\n  \"habilitada\": true,\r\n  \"idMPago\": \"MP_46237\",\r\n  \"saldo\": 3000.0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/cuentas/actualizar/{{cuentaId}}",
 					"protocol": "http",
@@ -246,6 +264,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "4000.0",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/cuentas/saldo/actualizar/{{cuentaId}}",
 					"protocol": "http",

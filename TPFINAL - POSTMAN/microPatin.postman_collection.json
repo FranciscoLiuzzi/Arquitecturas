@@ -50,6 +50,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patinId\": 1,\r\n  \"x\": \"40.730610\",\r\n  \"y\": \"-73.935242\",\r\n  \"estado\": \"disponible\",\r\n  \"km\": 100.5,\r\n  \"uso\": 15,\r\n  \"pausa\": 5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/patines/alta",
 					"protocol": "http",
@@ -91,6 +100,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patinId\": 1,\r\n  \"x\": \"67.730610\",\r\n  \"y\": \"-203.935242\",\r\n  \"estado\": \"ocupado\",\r\n  \"km\": 205.5,\r\n  \"uso\": 40,\r\n  \"pausa\": 7\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/patines/actualizar/{{patinId}}",
 					"protocol": "http",

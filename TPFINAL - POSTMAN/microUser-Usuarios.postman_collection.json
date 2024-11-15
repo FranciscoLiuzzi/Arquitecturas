@@ -30,6 +30,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"usuarioId\": 1,\r\n  \"nombre\": \"Jose\",\r\n  \"apellido\": \"Josefo\",\r\n  \"nroCelular\": 2262848162,\r\n  \"email\": \"jose.josefo@gmail.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/usuarios/alta",
 					"protocol": "http",
@@ -92,6 +101,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"usuarioId\": 1,\r\n  \"nombre\": \"EvilJose\",\r\n  \"apellido\": \"sisisi\",\r\n  \"nroCelular\": 2234134134,\r\n  \"email\": \"sdasd.wwwwwww@google.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/usuarios/actualizar/{{usuarioId}}",
 					"protocol": "http",

@@ -11,7 +11,7 @@ public class UsuarioDTO {
 	private String nombre;
 	private String apellido;
 	private long nroCelular;
-	private String email;;
+	private String email;
 
 	public UsuarioDTO(Usuario usuario) {
 		this.usuarioId = usuario.getUsuarioId();
