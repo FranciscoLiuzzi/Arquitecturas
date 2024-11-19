@@ -32,7 +32,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n  \"viajeId\": 1,\r\n  \"usuarioId\": 1,\r\n  \"patinId\": 1,\r\n  \"tiempoFin\": \"2024-11-15T12:00:00\",\r\n  \"tiempoUso\": 15.5,\r\n  \"tiempoPausa\": 5.0,\r\n  \"km\": 10.2,\r\n  \"tarifa\": 5.0\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,6 +105,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"viajeId\": 1,\r\n  \"usuarioId\": 1,\r\n  \"patinId\": 1,\r\n  \"tiempoFin\": \"2024-11-15T12:00:00\",\r\n  \"tiempoUso\": 30000.5,\r\n  \"tiempoPausa\": 2444.0,\r\n  \"km\": 566666.2,\r\n  \"tarifa\": 12222.0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/viajes/actualizar/{{viajeId}}",
 					"protocol": "http",
@@ -149,7 +158,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tarifaId\": 1,\r\n    \"fecha\": \"2024-11-01T10:30:00.000Z\",\r\n    \"fija\": 100.0,\r\n    \"completa\": 200.0\r\n}",
+					"raw": "{\r\n  \"tarifaId\": 123,\r\n  \"fecha\": \"2024-11-15T10:00:00\",\r\n  \"fija\": 100.0,\r\n  \"completa\": 150.0\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"

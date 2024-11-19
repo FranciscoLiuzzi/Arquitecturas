@@ -52,6 +52,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"facturaFecha\": \"2024-11-15T15:30:00.000Z\",\r\n  \"monto\": 250.75,\r\n  \"descripcion\": \"Factura por servicios\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/administracion/facturacion/nueva",
 					"protocol": "http",

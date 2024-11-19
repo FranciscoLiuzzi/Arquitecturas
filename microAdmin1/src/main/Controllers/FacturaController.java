@@ -14,7 +14,7 @@ public class FacturaController {
     
     @Autowired
     private FacturaService facturaService;
-   
+
     @GetMapping("")
     public ResponseEntity<?> getAll(){
         try{

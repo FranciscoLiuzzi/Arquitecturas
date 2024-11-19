@@ -11,6 +11,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"x\": \"12.34\",\r\n  \"y\": \"56.78\",\r\n  \"estado\": \"Disponible\",\r\n  \"km\": 150.5,\r\n  \"tiempoUso\": 120,\r\n  \"tiempoPausa\": 30\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/administracion/patines/nuevo",
 					"protocol": "http",
@@ -148,6 +157,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"x\": \"40.7128\",\r\n  \"y\": \"-74.0060\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/administracion/paradas/nueva",
 					"protocol": "http",
@@ -225,6 +243,36 @@
 						"cuentas",
 						"activar",
 						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveNewTarifa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tarifaId\": 12345,\r\n  \"fecha\": \"2024-11-15T10:30:00.000Z\",\r\n  \"fija\": 10.5,\r\n  \"completa\": 20.75\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/administracion/tarifas/nueva",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"administracion",
+						"tarifas",
+						"nueva"
 					]
 				}
 			},
