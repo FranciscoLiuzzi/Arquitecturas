@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import main.Objects.Viaje;
 
+//DTO Contiene los mismos atributos que la clase viaje
+
 @Getter
 @RequiredArgsConstructor
 public class ViajeDTO {

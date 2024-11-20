@@ -6,4 +6,5 @@ import main.Objects.Viaje;
 
 @Repository ("viajeRepository")
 public interface ViajeRepository extends JpaRepository<Viaje, Long> {
+	//CRUD
 }

@@ -3,7 +3,7 @@ package main.DTOs;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-//DTO Contiene los mismos atributos que la clase cuenta
+//DTO Contiene los mismos atributos que la clase patin
 
 @Data
 @RequiredArgsConstructor

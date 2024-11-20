@@ -7,10 +7,12 @@ import main.Objects.Tarifa;
 
 @Repository ("tarifaRepository")
 public interface TarifaRepository extends JpaRepository<Tarifa, Long> {
-
+	
+	//Retorna la tarifa fija
     @Query(value = "SELECT t.fija FROM Tarifa t WHERE t.fecha < CURRENT_DATE ORDER BY t.fecha DESC LIMIT 1", nativeQuery = true)
     Double findFirstFija();
-
+    
+    //Retorna la tarifa completa
     @Query(value = "SELECT t.completa FROM Tarifa t WHERE t.fecha < CURRENT_DATE ORDER BY t.fecha DESC LIMIT 1", nativeQuery = true)
     Double findFirstCompleta();
 }

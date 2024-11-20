@@ -3,6 +3,8 @@ package main.DTOs;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+//DTO Contiene los mismos atributos que la clase usuario
+
 @Getter
 @RequiredArgsConstructor
 public class UsuarioDTO {
