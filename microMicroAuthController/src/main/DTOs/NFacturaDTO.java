@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import java.sql.Timestamp;
 
-//DTO Contiene los mismos atributos para crear una nueva factura
-
 @Getter
 @RequiredArgsConstructor
 public class NFacturaDTO {

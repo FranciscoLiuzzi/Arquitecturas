@@ -3,8 +3,6 @@ package main.DTOs;
 import java.sql.Timestamp;
 import lombok.Data;
 
-//DTO Contiene los mismos atributos que la clase cuenta
-
 @Data
 public class CuentaDTO {
     private long cuentaId;

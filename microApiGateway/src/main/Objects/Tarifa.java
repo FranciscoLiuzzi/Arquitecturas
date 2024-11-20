@@ -5,8 +5,6 @@ import lombok.Data;
 import main.DTOs.TarifaDTO;
 import java.sql.Timestamp;
 
-//Clase de la tarifa
-
 @Entity
 @Data
 @Table(name = "tarifa")

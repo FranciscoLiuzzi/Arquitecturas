@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.sql.Timestamp;
 
-//Clase del viaje
-
 @Entity
 @Data
 @Table(name = "viaje")

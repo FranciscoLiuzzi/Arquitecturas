@@ -4,8 +4,6 @@ import lombok.Data;
 import main.Objects.Tarifa;
 import java.sql.Timestamp;
 
-//DTO Contiene los mismos atributos que la clase tarifa
-
 @Data
 public class TarifaDTO {   
     private long tarifaId;
