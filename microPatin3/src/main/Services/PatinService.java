@@ -28,6 +28,8 @@ public class PatinService{
 	@Autowired
 	RestTemplate restTemplate = new RestTemplate();
 	
+	private static final String STATIONS_URL = "http://localhost:8001/estaciones";
+	
 	//CRUD
 	
 	@Transactional(readOnly = true)

@@ -14,13 +14,13 @@ public class ApiGatewayConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-            .route("scooter-service", r -> r.path("/monopatines/**")
+            .route("scooter-service", r -> r.path("/patines/**")
                 .filters(f -> f.filter(filter))
                 .uri("http://localhost:8002"))
             .route("travel-service", r -> r.path("/viajes/**")
                 .filters(f -> f.filter(filter))
                 .uri("http://localhost:8003"))
-            .route("onesestacistaton-service", r -> r.path("/estaciones/**")
+            .route("onesestacistaton-service", r -> r.path("/paradas/**")
                 .filters(f -> f.filter(filter))
                 .uri("http://localhost:8001"))
             .route("user-service", r -> r.path("/usuarios/**")

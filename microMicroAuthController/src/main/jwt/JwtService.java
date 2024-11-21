@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class JwtService {
-    private static final String SECRET_KEY = "pepeArgentoErroriojsonwebtokesecuritySignatureExceptionJWTpepeArgentoErroriojsonwebtokesecuritySignatureExceptionJWT";
+    private static final String SECRET_KEY = "iojsonwebtokesecuritySignatureExceptionJWTarreiojsonwebtokesecuritySignatureExceptionJWT";
 
     public String getToken(UserDetails user) {
         HashMap<String, Object> extraClaims = new HashMap<>();

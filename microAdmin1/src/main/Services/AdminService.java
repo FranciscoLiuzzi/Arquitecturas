@@ -27,140 +27,145 @@ import main.DTOs.ViajeDTO;
 public class AdminService{
 	
 	@Autowired
-	private RestTemplate restTemplate = new RestTemplate();	
+	private RestTemplate restTemplate = new RestTemplate();
+	
+	private static final String SCOOTERS_URL = "http://localhost:8002/monopatines";
 
-	@Transactional
-	public ResponseEntity<?> saveNewPatin(NPatinDTO patinDTO) throws Exception {
-		String paradaUrl = "http://localhost:8002/monopatines/alta";
+    private static final String TRAVELS_URL = "http://localhost:8003/viajes";
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<NPatinDTO> requestEntity = new HttpEntity<>(patinDTO, headers);
-
-        ResponseEntity<Void> response = restTemplate.exchange(paradaUrl, HttpMethod.POST, requestEntity, Void.class);
-        if (response.getStatusCode() != HttpStatus.OK) {
-            throw new Exception("Error al guardar el nuevo monopatin");
-        }
-		return response;
-	}
-
-	@Transactional
-	public ResponseEntity<?> deletePatin(long patinId) throws Exception {
-		String paradaUrl = "http://localhost:8002/monopatines/eliminar/" + patinId;
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<PatinDTO> requestEntity = new HttpEntity<>(headers);
-
-		ResponseEntity<Void> response = restTemplate.exchange(paradaUrl, HttpMethod.DELETE, requestEntity, Void.class);
-		if (response.getStatusCode() != HttpStatus.OK) {
-			throw new Exception("Error al borrar el monopatin " + patinId);
-		}
-		return response;
-	}
-
-	@Transactional
-	public ResponseEntity<?> saveNewParada(ParadaDTO ParadaDTO) throws Exception {
-		String paradaUrl = "http://localhost:8001/estaciones/alta";
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-
-		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(ParadaDTO, headers);
-
-		ResponseEntity<Void> response = restTemplate.exchange(paradaUrl, HttpMethod.POST, requestEntity, Void.class);
-		if (response.getStatusCode() != HttpStatus.OK) {
-			throw new Exception("Error al guardar la nueva estacion");
-		}
-		return response;
-	}
-
-	@Transactional
-	public ResponseEntity<?> deleteParada(long paradaId) throws Exception {
-		String cuentaUrl = "http://localhost:8001/estaciones/eliminar/" + paradaId;
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
-
-		ResponseEntity<Void> response = restTemplate.exchange(cuentaUrl, HttpMethod.DELETE, requestEntity, Void.class);
-		if (response.getStatusCode() != HttpStatus.OK) {
-			throw new Exception("Error borrar la estacion " + paradaId);
-		}
-		return response;
-	}
-
-	@Transactional
-	public ResponseEntity<?> suspendCuenta(long cuentaId) throws Exception {
-		String cuentaUrl = "http://localhost:8004/cuentas/suspender/" + cuentaId;
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
-
-		ResponseEntity<Void> response = restTemplate.exchange(cuentaUrl, HttpMethod.PUT, requestEntity, Void.class);
-		if (response.getStatusCode() != HttpStatus.OK) {
-			throw new Exception("Error al suspender la cuenta " + cuentaId);
-		}
-		return response;
-	}
-
-	@Transactional
-	public ResponseEntity<?> activateCuenta(long cuentaId) throws Exception {
-		String cuentaUrl = "http://localhost:8004/cuentas/activar/" + cuentaId;
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
-
-		ResponseEntity<Void> response = restTemplate.exchange(cuentaUrl, HttpMethod.PUT, requestEntity, Void.class);
-		if (response.getStatusCode() != HttpStatus.OK) {
-			throw new Exception("Error al activar la cuenta " + cuentaId);
-		}
-		return response;
-	}
+//	@Transactional
+//	public ResponseEntity<?> saveNewPatin(NPatinDTO patinDTO) throws Exception {
+//		String paradaUrl = "http://localhost:8002/monopatines/alta";
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//
+//        HttpEntity<NPatinDTO> requestEntity = new HttpEntity<>(patinDTO, headers);
+//
+//        ResponseEntity<Void> response = restTemplate.exchange(paradaUrl, HttpMethod.POST, requestEntity, Void.class);
+//        if (response.getStatusCode() != HttpStatus.OK) {
+//            throw new Exception("Error al guardar el nuevo monopatin");
+//        }
+//		return response;
+//	}
+//
+//	@Transactional
+//	public ResponseEntity<?> deletePatin(long patinId) throws Exception {
+//		String paradaUrl = "http://localhost:8002/monopatines/eliminar/" + patinId;
+//
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		HttpEntity<PatinDTO> requestEntity = new HttpEntity<>(headers);
+//
+//		ResponseEntity<Void> response = restTemplate.exchange(paradaUrl, HttpMethod.DELETE, requestEntity, Void.class);
+//		if (response.getStatusCode() != HttpStatus.OK) {
+//			throw new Exception("Error al borrar el monopatin " + patinId);
+//		}
+//		return response;
+//	}
+//
+//	@Transactional
+//	public ResponseEntity<?> saveNewParada(ParadaDTO ParadaDTO) throws Exception {
+//		String paradaUrl = "http://localhost:8001/estaciones/alta";
+//
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//
+//		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(ParadaDTO, headers);
+//
+//		ResponseEntity<Void> response = restTemplate.exchange(paradaUrl, HttpMethod.POST, requestEntity, Void.class);
+//		if (response.getStatusCode() != HttpStatus.OK) {
+//			throw new Exception("Error al guardar la nueva estacion");
+//		}
+//		return response;
+//	}
+//
+//	@Transactional
+//	public ResponseEntity<?> deleteParada(long paradaId) throws Exception {
+//		String cuentaUrl = "http://localhost:8001/estaciones/eliminar/" + paradaId;
+//
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
+//
+//		ResponseEntity<Void> response = restTemplate.exchange(cuentaUrl, HttpMethod.DELETE, requestEntity, Void.class);
+//		if (response.getStatusCode() != HttpStatus.OK) {
+//			throw new Exception("Error borrar la estacion " + paradaId);
+//		}
+//		return response;
+//	}
+//
+//	@Transactional
+//	public ResponseEntity<?> suspendCuenta(long cuentaId) throws Exception {
+//		String cuentaUrl = "http://localhost:8004/cuentas/suspender/" + cuentaId;
+//
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
+//
+//		ResponseEntity<Void> response = restTemplate.exchange(cuentaUrl, HttpMethod.PUT, requestEntity, Void.class);
+//		if (response.getStatusCode() != HttpStatus.OK) {
+//			throw new Exception("Error al suspender la cuenta " + cuentaId);
+//		}
+//		return response;
+//	}
+//
+//	@Transactional
+//	public ResponseEntity<?> activateCuenta(long cuentaId) throws Exception {
+//		String cuentaUrl = "http://localhost:8004/cuentas/activar/" + cuentaId;
+//
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
+//
+//		ResponseEntity<Void> response = restTemplate.exchange(cuentaUrl, HttpMethod.PUT, requestEntity, Void.class);
+//		if (response.getStatusCode() != HttpStatus.OK) {
+//			throw new Exception("Error al activar la cuenta " + cuentaId);
+//		}
+//		return response;
+//	}
+//
+//	@Transactional(readOnly = true)
+//	public List<InformeKmDTO> getInformePatinesByKms() throws Exception {
+//		String patinUrl = "http://localhost:8002/monopatines/reporte/kilometros/sinTiempoDeUso";
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
+//
+//		ResponseEntity<List<InformeKmDTO>> response = restTemplate.exchange(patinUrl, 
+//								HttpMethod.GET, 
+//								requestEntity, 
+//								ParameterizedTypeReference.forType(List.class));
+//		if (response.getStatusCode() != HttpStatus.OK) {
+//			throw new Exception("Error al obtener los datos.");
+//		}
+//		return response.getBody();		
+//	}
+//
+//	@Transactional
+//    public Object getInformePatinesByKmsAndUso() throws Exception {
+//		String patinUrl = "http://localhost:8002/monopatines/reporte/kilometros/conTiempoDeUso";
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
+//
+//		ResponseEntity<List<InformeKmDTO>> response = restTemplate.exchange(patinUrl, 
+//								HttpMethod.GET, 
+//								requestEntity, 
+//								ParameterizedTypeReference.forType(List.class));
+//		if (response.getStatusCode() != HttpStatus.OK) {
+//			throw new Exception("Error al obtener los datos.");
+//		}
+//		return response.getBody();	
+//    }	
 
 	@Transactional(readOnly = true)
-	public List<InformeKmDTO> getInformePatinesByKms() throws Exception {
-		String patinUrl = "http://localhost:8002/monopatines/reporte/kilometros/sinTiempoDeUso";
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
-
-		ResponseEntity<List<InformeKmDTO>> response = restTemplate.exchange(patinUrl, 
-								HttpMethod.GET, 
-								requestEntity, 
-								ParameterizedTypeReference.forType(List.class));
-		if (response.getStatusCode() != HttpStatus.OK) {
-			throw new Exception("Error al obtener los datos.");
-		}
-		return response.getBody();		
-	}
-
-	@Transactional
-    public Object getInformePatinesByKmsAndUso() throws Exception {
-		String patinUrl = "http://localhost:8002/monopatines/reporte/kilometros/conTiempoDeUso";
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
-
-		ResponseEntity<List<InformeKmDTO>> response = restTemplate.exchange(patinUrl, 
-								HttpMethod.GET, 
-								requestEntity, 
-								ParameterizedTypeReference.forType(List.class));
-		if (response.getStatusCode() != HttpStatus.OK) {
-			throw new Exception("Error al obtener los datos.");
-		}
-		return response.getBody();	
-    }	
-
-	@Transactional(readOnly = true)
-	public Object getPatinesConMasViajes(Long travelQuantity, Integer year) throws Exception {
-		String viajeUrl = "http://localhost:8003/viajes";
+	public Object getPatinesConMasViajes(Long travelQuantity, Integer year, String token) throws Exception {
+		String viajeUrl = TRAVELS_URL;
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.set("Authorization", token);
 		HttpEntity<ViajeDTO> requestEntity = new HttpEntity<>(headers);
 
 		ResponseEntity<List<ViajeDTO>> response = restTemplate.exchange(viajeUrl, 
@@ -199,36 +204,36 @@ public class AdminService{
 		.collect(Collectors.toList());
 		return filteredScooters;
 	}
-
-	@Transactional
-	public Object saveNewTarifa(TarifaDTO TarifaDTO) throws Exception {
-		String tarifaUrl = "http://localhost:8003/viajes/tarifas/alta";
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<TarifaDTO> requestEntity = new HttpEntity<>(TarifaDTO, headers);
-
-		ResponseEntity<Void> response = restTemplate.exchange(tarifaUrl, HttpMethod.POST, requestEntity, Void.class);
-		if (response.getStatusCode() != HttpStatus.OK) {
-			throw new Exception("Error al guardar la nueva tarifa");
-		}
-		return response;
-	}
-
-	@Transactional(readOnly = true)
-	public List<InformeTiempoDTO> getInformePatinesByUso() {
-		String patinUrl = "http://localhost:8002/monopatines/reporte/tiempoTotal";
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<InformeTiempoDTO> requestEntity = new HttpEntity<>(headers);
-		
-		ResponseEntity<List<InformeTiempoDTO>> response = restTemplate.exchange(patinUrl, 
-								HttpMethod.GET, 
-								requestEntity, 
-								ParameterizedTypeReference.forType(List.class));
-		if (response.getStatusCode() != HttpStatus.OK) {
-			throw new IllegalArgumentException("Error al obtener los datos.");
-		}
-		return response.getBody();
-	}
+//
+//	@Transactional
+//	public Object saveNewTarifa(TarifaDTO TarifaDTO) throws Exception {
+//		String tarifaUrl = "http://localhost:8003/viajes/tarifas/alta";
+//
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		HttpEntity<TarifaDTO> requestEntity = new HttpEntity<>(TarifaDTO, headers);
+//
+//		ResponseEntity<Void> response = restTemplate.exchange(tarifaUrl, HttpMethod.POST, requestEntity, Void.class);
+//		if (response.getStatusCode() != HttpStatus.OK) {
+//			throw new Exception("Error al guardar la nueva tarifa");
+//		}
+//		return response;
+//	}
+//
+//	@Transactional(readOnly = true)
+//	public List<InformeTiempoDTO> getInformePatinesByUso() {
+//		String patinUrl = "http://localhost:8002/monopatines/reporte/tiempoTotal";
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setContentType(MediaType.APPLICATION_JSON);
+//		HttpEntity<InformeTiempoDTO> requestEntity = new HttpEntity<>(headers);
+//		
+//		ResponseEntity<List<InformeTiempoDTO>> response = restTemplate.exchange(patinUrl, 
+//								HttpMethod.GET, 
+//								requestEntity, 
+//								ParameterizedTypeReference.forType(List.class));
+//		if (response.getStatusCode() != HttpStatus.OK) {
+//			throw new IllegalArgumentException("Error al obtener los datos.");
+//		}
+//		return response.getBody();
+//	}
 }

@@ -5,54 +5,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import main.DTOs.ParadaDTO;
-import main.Objects.Parada;
-import main.Repositories.ParadaRepository;
+import main.Objects.ParadaMongo;
+import main.Repositories.ParadaMongoRepository;
 
 @Service("paradaService")
 public class ParadaService{
 
 	@Autowired
-	private ParadaRepository paradaRepository;
+	private ParadaMongoRepository paradaMongoRepository;
 	
 	//CRUD
 	
 	@Transactional (readOnly = true)
 	public List<ParadaDTO> findAll() {
-		return this.paradaRepository.findAll().stream().map(ParadaDTO::new ).toList();
+		return this.paradaMongoRepository.findAll().stream().map(ParadaDTO::new ).toList();
 	}
 
 	
 	@Transactional (readOnly = true)
-	public ParadaDTO findById(Long id) {
-		return paradaRepository.findById(id).map(ParadaDTO::new).orElseThrow(
+	public ParadaDTO findById(String id) {
+		return paradaMongoRepository.findById(id).map(ParadaDTO::new).orElseThrow(
 			() -> new IllegalArgumentException("ID de parada invalido:" + id));
 	}
 	
 	@Transactional
 	public ParadaDTO save(ParadaDTO entity) {
-		return new ParadaDTO(this.paradaRepository.save(new Parada(entity)));
+		return new ParadaDTO(this.paradaMongoRepository.save(new ParadaMongo(entity)));
 	}
 
 	@Transactional
-	public void delete(Long id) {
-		paradaRepository.delete(paradaRepository.findById(id).orElseThrow(
+	public void delete(String id) {
+		paradaMongoRepository.delete(paradaMongoRepository.findById(id).orElseThrow(
 			() -> new IllegalArgumentException("ID de parada invalido:" + id)));
 	}
 	
 	@Transactional
-	public void update(Long id, ParadaDTO entity) {
-		Parada parada = paradaRepository.findById(id).orElseThrow(
-			() -> new IllegalArgumentException("ID de parada invalido: " + id));
-		parada.setX(entity.getX());
-		parada.setY(entity.getY());
-		paradaRepository.save(parada);
-	}
+	public void update(String id, ParadaDTO entity) throws Exception{
+		ParadaMongo parada = paradaMongoRepository.findById(id).orElseThrow(
+				() -> new IllegalArgumentException("ID de estacion invalido: " + id));
+			parada.setX(entity.getX());
+			parada.setY(entity.getY());
+			parada.setNombre(entity.getNombre());
+			paradaMongoRepository.save(parada);
+		}
 	
 	////////////////////////////////////////////////////////////////////////
 	
 	@Transactional(readOnly = true)
-	public ParadaDTO findByXAndY(String X, String Y) {
-		return this.paradaRepository.findByXAndY(X, Y).map(ParadaDTO::new).orElseThrow(
-			() -> new IllegalArgumentException("X e Y invalidos: " + X + " " + Y));
+	public ParadaDTO findByXAndY(String X, String Y) throws Exception{
+		ParadaMongo parada = this.paradaMongoRepository.findByXAndY(X, Y);
+		System.out.println("llego aca");
+		System.out.println(parada);
+		ParadaDTO paradaDTO = new ParadaDTO(parada);
+	 // Copia los atributos de Station a StationDTOBeanUtils.copyProperties(station, stationDTO); // Copia los atributos de Station a StationDTO
+		return paradaDTO;
 	}
 }

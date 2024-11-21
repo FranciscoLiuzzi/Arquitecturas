@@ -1,7 +1,9 @@
 package main.Services;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +43,40 @@ public class ViajeService{
 
 	@Autowired
 	private RestTemplate restTemplate = new RestTemplate();
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	private static final String LOGIN_URL = "http://localhost:8006/auth/acceder";
 
+	private static final String ACCOUNTS_URL = "http://localhost:8004/cuentas";
+
+	private static final String USERS_URL = "http://localhost:8004/usuarios";
+
+	private static final String SCOOTERS_URL = "http://localhost:8002/monopatines";
+
+	private static final String STATIONS_URL = "http://localhost:8001/estaciones";
+
+	private static final String ADMINISTRATION_URL = "http://localhost:8005/administracion";
+	
+	private String getSystemToken(){
+		Map<String, String> body = new HashMap<>();
+		body.put("email", "System@system");
+		body.put("password", "System");
+		
+		ResponseEntity<String> response = restTemplate.postForEntity(LOGIN_URL, body, String.class);
+		if (response.getStatusCode() != HttpStatus.OK) {
+			throw new IllegalArgumentException("Error al obtener el token");
+		}
+		String res = response.getBody();
+		if (res != null) {
+			return res.replace("{\"token\":\"", "").replace("\"}", "");
+        } else {
+			throw new IllegalStateException("Response body is null");
+        }
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@Transactional(readOnly = true)
 	public List<ViajeDTO> findAll() {
 		return this.viajeRepository.findAll().stream().map(ViajeDTO::new ).toList();
@@ -55,7 +90,13 @@ public class ViajeService{
 	
 	@Transactional
 	public ViajeDTO save(long idUsuario, long idPatin) throws IllegalArgumentException, RestClientException {
-		ResponseEntity<UsuarioDTO> usuario = restTemplate.getForEntity("http://localhost:8004/usuarios/buscar/" + idUsuario, UsuarioDTO.class);
+		String token = getSystemToken();
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", token);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+		ResponseEntity<UsuarioDTO> usuario = restTemplate.exchange(USERS_URL + "/buscar/" + idUsuario, HttpMethod.GET, entity, UsuarioDTO.class);
 		if (usuario.getStatusCode() != HttpStatus.OK) {
 			throw new IllegalArgumentException("ID de usuario invalido: " + idUsuario);
 		}
@@ -83,7 +124,7 @@ public class ViajeService{
 		if (patinBody.getEstado().equals("ocupado")) {
 			throw new IllegalArgumentException("El monopatin ya se encuentra en uso");
 		}
-		if (!updateEstadoPatin(idPatin, patinBody, "ocupado")) {
+		if (!updateEstadoPatin(idPatin, patinBody, "ocupado", token)) {
 			throw new IllegalArgumentException("El estado del monopatin no se pudo actualizar");
 		}
 		Integer patinUso = patinBody.getUso();
@@ -94,8 +135,8 @@ public class ViajeService{
 		return res;
 	}
 
-	private boolean updateEstadoPatin(long idScooter, PatinDTO scooter, String estado) {
-		String estadoPatinUrl = "http://localhost:8002/monopatines/actualizar/" + idScooter;
+	private boolean updateEstadoPatin(long idScooter, PatinDTO scooter, String estado, String token) {
+		String estadoPatinUrl = SCOOTERS_URL + "/actualizar/" + idScooter;
 		scooter.setEstado(estado);
 
 		HttpHeaders headers = new HttpHeaders();
@@ -122,12 +163,25 @@ public class ViajeService{
 
 	@Transactional
 	public void viajeEnd(Long id) throws Exception {
+		String token = getSystemToken();
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", token);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+		
 		Viaje viaje = viajeRepository.findById(id).orElseThrow(
 			() -> new IllegalArgumentException("No se encuentra el viaje con id: " + id));
 		if (viaje.getTiempoFin() != null) {
 			throw new IllegalArgumentException("El viaje ya esta finalizado");
 		}
-		ResponseEntity<PatinDTO> patin = restTemplate.getForEntity("http://localhost:8002/monopatines/" + viaje.getPatinId(), PatinDTO.class);
+		
+		ResponseEntity<PatinDTO> patin = restTemplate.exchange(
+				SCOOTERS_URL + "/" +  viaje.getPatinId(),
+				HttpMethod.GET,
+				entity,
+				PatinDTO.class
+			);
+		
 		if (patin.getStatusCode() != HttpStatus.OK) {
 			throw new IllegalArgumentException("ID de monopatin invalido: " + viaje.getPatinId());
 		}
@@ -143,7 +197,14 @@ public class ViajeService{
 		}
 		Double patinX = Double.parseDouble(patinXStr);
 		Double patinY = Double.parseDouble(patinYStr);
-		ResponseEntity<ParadaDTO> parada = restTemplate.getForEntity("http://localhost:8001/estaciones/verificar/latitud/" + patinX + "/longitud/" + patinY, ParadaDTO.class);
+		
+		ResponseEntity<ParadaDTO> parada = restTemplate.exchange(
+				STATIONS_URL + "/verificar/x/" + patinX + "/y/" + patinY,
+				HttpMethod.GET,
+				entity,
+				ParadaDTO.class
+			);
+		
 		if (parada.getStatusCode() != HttpStatus.OK) {
 			throw new IllegalArgumentException("No se encuentra una estacion valida para el monopatin: " + viaje.getPatinId());
 		}
@@ -165,9 +226,9 @@ public class ViajeService{
 		}	
 			
 		viajeRepository.save(viaje);
-		updateEstadoPatin(viaje.getPatinId(), patin.getBody(), "disponible");
-		updateUserAccount(viaje.getUsuarioId(), viaje.getTarifa());
-		sendBill(viaje);
+		updateEstadoPatin(viaje.getPatinId(), patin.getBody(), "disponible", token);
+		updateUserAccount(viaje.getUsuarioId(), viaje.getTarifa(), token);
+		sendBill(viaje, token);
 	}
 
 	//Simula datos de viaje
@@ -178,14 +239,15 @@ public class ViajeService{
 	}
 
 	@Transactional
-	public void sendBill(Viaje viaje) throws Exception {
-		String cuentaUrl = "http://localhost:8005/administracion/facturacion/nueva";
+	public void sendBill(Viaje viaje, String token) throws Exception {
+		String cuentaUrl = ADMINISTRATION_URL + "/facturacion/nueva";
 		
 		String facturaDescripcion = "Viaje realizado el " + viaje.getTiempoFin() + " en el monopatin " + viaje.getPatinId() + " por el usuario " + viaje.getUsuarioId();
 		NFacturaDTO bill = new NFacturaDTO(viaje.getTiempoFin(), viaje.getTarifa(), facturaDescripcion);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Authorization", token);
 
         HttpEntity<NFacturaDTO> requestEntity = new HttpEntity<>(bill, headers);
 
@@ -196,23 +258,28 @@ public class ViajeService{
 	}
 
 	@Transactional
-	public void updateUserAccount(long userId, double tarifa) throws Exception {
-		List<CuentaDTO> cuentas = getUserAccounts(userId);
+	public void updateUserAccount(long userId, double tarifa, String token) throws Exception {
+		List<CuentaDTO> cuentas = getUserAccounts(userId, token);
 		CuentaDTO cuenta = cuentas.stream().filter(a -> a.getSaldo() > 0).findFirst().orElse(null);
 		if (Objects.isNull(cuenta)) {
 			cuenta = cuentas.get(0);
 		}
 		cuenta.setSaldo(cuenta.getSaldo() - tarifa);
 		try {
-			updateAccountBalance(cuenta);
+			updateAccountBalance(cuenta, token);
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Error al actualizar la cuenta del usuario: " + userId);
 		}
 	}
 
 	@Transactional(readOnly = true)
-	public List<CuentaDTO> getUserAccounts(long userId) throws Exception {
-		String url = "http://localhost:8004/cuentas/usuario/" + userId;
+	public List<CuentaDTO> getUserAccounts(long userId, String token) throws Exception {
+		
+		String url = ACCOUNTS_URL + "/usuario/" + userId;
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", token);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<String> entity = new HttpEntity<>(headers);
 
 		try {
 			ResponseEntity<List<CuentaDTO>> response = restTemplate.exchange(
@@ -242,12 +309,12 @@ public class ViajeService{
     }
 
 	@Transactional
-	public void updateAccountBalance(CuentaDTO account) throws Exception {
-        String accountUrl = "http://localhost:8004/usuarios/actualizar/" + account.getCuentaId();
+	public void updateAccountBalance(CuentaDTO account, String token) throws Exception {
+		String accountUrl = USERS_URL + "/actualizar/" + account.getCuentaId();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-
+        headers.set("Authorization", token);
         HttpEntity<CuentaDTO> requestEntity = new HttpEntity<>(account, headers);
 
         ResponseEntity<Void> response = restTemplate.exchange(accountUrl, HttpMethod.PUT, requestEntity, Void.class);

@@ -14,12 +14,15 @@ import main.DTOs.PatinDTO;
 
 @Service("MantenimientoService")
 public class MantenimientoService{
+	
 	@Autowired
-	private RestTemplate restTemplate = new RestTemplate();	
+	private RestTemplate restTemplate = new RestTemplate();
+	
+	private static final String SCOOTERS_URL = "http://localhost:8002/patines";
 
 	@Transactional
 	public void updatepatinState(long idpatin, String estado) {
-		ResponseEntity<PatinDTO> patin = restTemplate.getForEntity("http://localhost:8002/monopatines/" + idpatin, PatinDTO.class);
+		ResponseEntity<PatinDTO> patin = restTemplate.getForEntity(SCOOTERS_URL + idpatin, PatinDTO.class);
 		if (patin.getStatusCode() != HttpStatus.OK) {
 			throw new IllegalArgumentException("ID de patin invalido: " + idpatin);
 		}
