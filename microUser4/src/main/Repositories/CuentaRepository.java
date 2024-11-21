@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import main.DTOs.CuentaDTO;
 import main.Objects.Cuenta;
 
-@Repository ("cuentaRepository")
+@Repository("cuentaRepository")
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 	
 	@Query("SELECT NEW main.DTOs.CuentaDTO(a) FROM Cuenta a JOIN a.usuarios ua JOIN ua.usuario u WHERE u.usuarioId = ?1")
