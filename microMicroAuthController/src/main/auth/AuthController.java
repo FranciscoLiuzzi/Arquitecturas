@@ -24,8 +24,8 @@ public class AuthController {
     }
 
     @PostMapping(value = "/registrar")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request, @RequestHeader("Authorization") String token) {
-        return ResponseEntity.ok(authService.register(request, token));
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request));
     }
 
     @DeleteMapping(value = "/eliminar/{email}")
