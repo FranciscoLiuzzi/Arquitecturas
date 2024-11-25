@@ -1,0 +1,516 @@
+{
+	"info": {
+		"_postman_id": "47c9ab20-88a1-43e2-b30b-5b609915dcce",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39035904"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"usuarioId\": 2,\r\n  \"nombre\": \"Lautaro\",\r\n  \"apellido\": \"Etchelet\",\r\n  \"nroCelular\": 2262373737,\r\n  \"email\": \"user@gmail.com\",\r\n  \"password\": \"user1234\",\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8004/usuarios/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"usuarios",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8004/usuarios/buscar/{{usuarioId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"usuarios",
+								"buscar",
+								"{{usuarioId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/usuarios/eliminar/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"usuarios",
+								"eliminar",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"usuarioId\": 1,\r\n  \"nombre\": \"Francisco\",\r\n  \"apellido\": \"Liuzzi\",\r\n  \"nroCelular\": 2262949494,\r\n  \"email\": \"fran.liu@gmail.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8004/usuarios/actualizar/{{usuarioId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"usuarios",
+								"actualizar",
+								"{{usuarioId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "asociarCuenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/usuarios/vincular/usuario/{{usuarioId}}/cuenta/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"usuarios",
+								"vincular",
+								"usuario",
+								"{{usuarioId}}",
+								"cuenta",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "desvincularCuenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/usuarios/desvincular/usuario/{{usuarioId}}/cuenta/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"usuarios",
+								"desvincular",
+								"usuario",
+								"{{usuarioId}}",
+								"cuenta",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuenta",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCuentasByUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/cuentas/usuario/{{usuarioId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"usuario",
+								"{{usuarioId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cuentaId\": 1,\r\n  \"fechaAlta\": \"2024-11-25T15:30:00.000Z\",\r\n  \"habilitada\": true,\r\n  \"idMPago\": \"abc123def456\",\r\n  \"saldo\": 278\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8004/cuentas/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/cuentas/buscar/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"buscar",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/cuentas/eliminar/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"eliminar",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "suspend",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/cuentas/suspender/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"suspender",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/cuentas/activar/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"activar",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cuentaId\": 1,\r\n  \"fechaAlta\": \"2024-11-25T15:30:00.000Z\",\r\n  \"habilitada\": true,\r\n  \"idMPago\": \"ABD978DJK543\",\r\n  \"saldo\": 10000\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8004/cuentas/actualizar/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"actualizar",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "asociarUsuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/cuentas/vincular/usuario/{{usuarioId}}/cuenta/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"vincular",
+								"usuario",
+								"{{usuarioId}}",
+								"cuenta",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "desvincularUsuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/cuentas/desvincular/usuario/{{usuarioId}}/cuenta/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"desvincular",
+								"usuario",
+								"{{usuarioId}}",
+								"cuenta",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSaldo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8004/cuentas/saldo/obtener/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"saldo",
+								"obtener",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSaldo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "99999",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8004/cuentas/saldo/actualizar/{{cuentaId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"cuentas",
+								"saldo",
+								"actualizar",
+								"{{cuentaId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

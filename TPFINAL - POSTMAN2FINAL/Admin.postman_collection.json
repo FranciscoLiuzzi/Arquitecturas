@@ -1,0 +1,488 @@
+{
+	"info": {
+		"_postman_id": "16e658d5-5536-4e79-88a5-c3550d5514b9",
+		"name": "Admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39035904"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "savePatin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"0\",\r\n  \"y\": \"0\",\r\n  \"estado\": \"disponible\",\r\n  \"km\": 15.5,\r\n  \"tiempoUso\": 120,\r\n  \"tiempoPausa\": 30\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8005/administracion/patines/nuevo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"patines",
+								"nuevo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/patines/eliminar/{{patinId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"patines",
+								"eliminar",
+								"{{patinId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getKm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/informes/km/sinUso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"informes",
+								"km",
+								"sinUso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInformePatinesByKmsAndUso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/informes/km/conUso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"informes",
+								"km",
+								"conUso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPatinesConMasViajes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/informes/informePatinesPor/cantidadDeViajes/{{travelsQuantity}}/enElAnio/{{year}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"informes",
+								"informePatinesPor",
+								"cantidadDeViajes",
+								"{{travelsQuantity}}",
+								"enElAnio",
+								"{{year}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInformePatinesByUso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/informes/tiempoUso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"informes",
+								"tiempoUso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveParada",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"200\",\r\n  \"y\": \"200\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8005/administracion/paradas/nueva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"paradas",
+								"nueva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteParada",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/paradas/eliminar/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"paradas",
+								"eliminar",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "suspendCuenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/cuentas/suspernder/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"cuentas",
+								"suspernder",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activateCuenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/cuentas/activar/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"cuentas",
+								"activar",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveNewTarifa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tarifaId\": 1,\r\n  \"fecha\": \"2024-11-25T12:00:00.000+00:00\",\r\n  \"fija\": 100.0,\r\n  \"completa\": 150.0\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8005/administracion/tarifas/nueva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"tarifas",
+								"nueva"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Factura",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/facturacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"facturacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/facturacion/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"facturacion",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"facturaFecha\": \"2024-11-25T12:00:00.000+00:00\",\r\n  \"monto\": 500.0,\r\n  \"descripcion\": \"Factura de servicios\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8005/administracion/facturacion/nueva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"facturacion",
+								"nueva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFacturacion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8005/administracion/facturacion/fechaDesde/{{fechaDesde}}/fechaHasta/{{fechaHasta}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"administracion",
+								"facturacion",
+								"fechaDesde",
+								"{{fechaDesde}}",
+								"fechaHasta",
+								"{{fechaHasta}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mantenimiento",
+			"item": [
+				{
+					"name": "actualizarEstado",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8005/mantenimiento/patines/actualizarEstado/{{id}}/estado/{{estado}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"mantenimiento",
+								"patines",
+								"actualizarEstado",
+								"{{id}}",
+								"estado",
+								"{{estado}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

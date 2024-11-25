@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "c3206540-e4cb-4625-be64-940c96ca7f30",
+		"name": "Patin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39035904"
+	},
+	"item": [
+		{
+			"name": "getAll",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8002/patines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"patines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8002/patines/{{patinId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"patines",
+						"{{patinId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"x\": \"40.741895\",\r\n  \"y\": \"-73.989308\",\r\n  \"estado\": \"disponible\",\r\n  \"km\": 120.5,\r\n  \"uso\": 15,\r\n  \"pausa\": 3\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/patines/actualizar/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"patines",
+						"actualizar",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "scooterEnEstacion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8002/patines/parada/{{patinId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"patines",
+						"parada",
+						"{{patinId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCercanos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8002/patines/X/{{x}}/Y/{{y}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"patines",
+						"X",
+						"{{x}}",
+						"Y",
+						"{{y}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MzI1NTkzMDUsImV4cCI6MTczNDAzMDUzNH0.GYsMsubct79hglkXIfE71_ebL64MaL5So0dSZwrZtR4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
