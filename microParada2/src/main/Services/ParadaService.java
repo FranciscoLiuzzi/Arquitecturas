@@ -42,7 +42,7 @@ public class ParadaService{
 	@Transactional
 	public void update(String id, ParadaDTO entity) throws Exception{
 		ParadaMongo parada = paradaMongoRepository.findById(id).orElseThrow(
-				() -> new IllegalArgumentException("ID de estacion invalido: " + id));
+				() -> new IllegalArgumentException("ID de parada invalido: " + id));
 			parada.setX(entity.getX());
 			parada.setY(entity.getY());
 			parada.setNombre(entity.getNombre());

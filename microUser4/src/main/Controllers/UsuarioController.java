@@ -55,7 +55,7 @@ public class UsuarioController {
     }
     
     @Operation(summary = "Obtiene un usuario por su id.", description = "Obtiene un usuario por su userId")
-    @GetMapping("/buscar/{userId}")
+    @GetMapping("/buscar/{usuarioId}")
     public ResponseEntity<?> getById(@RequestHeader("Authorization") String token, @PathVariable long usuarioId) {
         ResponseEntity<String> response = validarToken(token, List.of("ADMIN", "USER", "MAINTENER"));
         if(response.getStatusCode() != HttpStatus.OK){
@@ -69,7 +69,7 @@ public class UsuarioController {
     }
     
     @Operation(summary = "Elimina un usuario por su id.", description = "Elimina un usuario por su userId")
-    @DeleteMapping("/eliminar/{userId}")
+    @DeleteMapping("/eliminar/{usuarioId}")
     public ResponseEntity<?> delete(@RequestHeader("Authorization") String token, @PathVariable long usuarioId){
         ResponseEntity<String> response = validarToken(token, List.of("ADMIN"));
         if(response.getStatusCode() != HttpStatus.OK){
@@ -84,7 +84,7 @@ public class UsuarioController {
     }
     
     @Operation(summary = "Actualiza los datos de un usuario por su id.", description = "Actualiza un usuario por su userId")
-    @PutMapping("/actualizar/{userId}")
+    @PutMapping("/actualizar/{usuarioId}")
     public ResponseEntity<?> update(@RequestHeader("Authorization") String token, @PathVariable long usuarioId, @RequestBody UsuarioDTO entity){
         ResponseEntity<String> response = validarToken(token, List.of("ADMIN"));
         if(response.getStatusCode() != HttpStatus.OK){
@@ -99,7 +99,7 @@ public class UsuarioController {
     }
     
     @Operation(summary = "Vincula una cuenta a un usuario.", description = "Vincula una cuenta a un usuario")
-    @PutMapping("/vincular/usuario/{userId}/cuenta/{accountId}")
+    @PutMapping("/vincular/usuario/{usuarioId}/cuenta/{cuentaId}")
     public ResponseEntity<?> asociarCuenta(@RequestHeader("Authorization") String token, @PathVariable long usuarioId, @PathVariable long cuentaId){
         ResponseEntity<String> response = validarToken(token, List.of("ADMIN"));
         if(response.getStatusCode() != HttpStatus.OK){
@@ -114,7 +114,7 @@ public class UsuarioController {
     }
     
     @Operation(summary = "Desvincula una cuenta de un usuario.", description = "Desvincula una cuenta de un usuario")
-    @DeleteMapping("/desvincular/usuario/{userId}/cuenta/{accountId}")
+    @DeleteMapping("/desvincular/usuario/{usuarioId}/cuenta/{cuentaId}")
     public ResponseEntity<?> desvincularCuenta(@RequestHeader("Authorization") String token, @PathVariable long usuarioId, @PathVariable long cuentaId){
         ResponseEntity<String> response = validarToken(token, List.of("ADMIN"));
         if(response.getStatusCode() != HttpStatus.OK){

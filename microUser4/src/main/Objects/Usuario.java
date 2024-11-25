@@ -22,6 +22,10 @@ public class Usuario {
 	@Column(name="email")
 	private String email;
 	
+	@Column(name="password")
+	@Transient
+	private String password;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="usuario_id")
@@ -38,11 +42,12 @@ public class Usuario {
 		this.cuentas = new HashSet<>();
 	}
 
-	public Usuario(String nombre, String apellido, long nroCelular, String email) {
+	public Usuario(String nombre, String apellido, long nroCelular, String email, String password) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.nroCelular = nroCelular;
-		this.email = email;		
+		this.email = email;
+		this.password = password;
 		this.cuentas = new HashSet<>();
 	}
 
@@ -51,6 +56,7 @@ public class Usuario {
 		this.apellido = dto.getApellido();
 		this.nroCelular = dto.getNroCelular();
 		this.email = dto.getEmail();
+		this.password = dto.getPassword();
 		this.cuentas = new HashSet<>();
 	}
 }

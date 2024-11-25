@@ -42,7 +42,7 @@ public class MantenimientoService{
 		}
 
 		try {
-			ResponseEntity<Void> response = restTemplate.exchange("http://localhost:8002/monopatines/actualizar/" + idpatin, HttpMethod.PUT, requestEntity, Void.class);
+			ResponseEntity<Void> response = restTemplate.exchange("http://localhost:8002/patines/actualizar/" + idpatin, HttpMethod.PUT, requestEntity, Void.class);
 			if (response.getStatusCode() != HttpStatus.OK) {
 				throw new Exception("Error al actualizar el estado del monopatin" + idpatin);
 			}

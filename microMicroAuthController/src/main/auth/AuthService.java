@@ -37,12 +37,12 @@ public class AuthService {
     }
 
     public AuthResponse register(RegisterRequest request){
-//        if (request.getRole() == null){
-//            request.setRole(Role.USER);
-//        }
-//        if (request.getRole() != Role.USER && !validar(token).equals("ADMIN")) {
-//            throw new RuntimeException("No tiene permisos para registrar un usuario con ese rol");
-//        }
+        //if (request.getRole() == null){
+        //    request.setRole(Role.USER);
+        //}
+    	//        if (request.getRole() != Role.USER && !validar(token).equals("ADMIN")) {
+    	//            throw new RuntimeException("No tiene permisos para registrar un usuario con ese rol");
+    	//        }
         User user = userRepository.findByEmail(request.getEmail()).orElse(
             User.builder().email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).build());
         

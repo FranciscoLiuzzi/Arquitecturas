@@ -12,6 +12,7 @@ public class UsuarioDTO {
 	private String apellido;
 	private long nroCelular;
 	private String email;
+	private String password;
 
 	public UsuarioDTO(Usuario usuario) {
 		this.usuarioId = usuario.getUsuarioId();
@@ -19,13 +20,15 @@ public class UsuarioDTO {
 		this.apellido = usuario.getApellido();
 		this.nroCelular = usuario.getNroCelular();
 		this.email = usuario.getEmail();
+		this.password = usuario.getPassword();
 	}
 
-	public UsuarioDTO(long usuarioId, String nombre, String apellido, long nroCelular, String email) {
+	public UsuarioDTO(long usuarioId, String nombre, String apellido, long nroCelular, String email, String password) {
 		this.usuarioId = usuarioId;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.nroCelular = nroCelular;
 		this.email = email;
+		this.password = password;
 	}
 }

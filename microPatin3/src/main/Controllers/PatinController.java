@@ -92,15 +92,15 @@ public class PatinController {
 	     }
 	 }
 	 
-	 @Operation(summary = "Actualiza los datos de un monopatin por su id.", description = "Actualiza un monopatin por su scooterId")
+	 @Operation(summary = "Actualiza los datos de un monopatin por su id.", description = "Actualiza un monopatin por su patinId")
 	 @PutMapping("/actualizar/{patinId}")
-	 public ResponseEntity<?> update(@RequestHeader("Authorization") String token,@PathVariable long scooterId, @RequestBody PatinDTO entity){        
+	 public ResponseEntity<?> update(@RequestHeader("Authorization") String token,@PathVariable long patinId, @RequestBody PatinDTO entity){        
 	        ResponseEntity<String> response = validarToken(token, List.of("ADMIN", "MAINTENER"));
 	        if(response.getStatusCode() != HttpStatus.OK){
 	            return response;
 	        }
 	        try{
-	        	patinService.update(scooterId,entity);
+	        	patinService.update(patinId,entity);
 	            return ResponseEntity.status(HttpStatus.OK).body("Se actualizaron correctamente los datos del patin con id: " + entity.getPatinId());
 	        }catch (Exception e){
 	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. No se pudieron actualizar los datos de la estacion, revise los campos e intente nuevamente.\"\n\"error\":\"" + e.getMessage()+"\"}");

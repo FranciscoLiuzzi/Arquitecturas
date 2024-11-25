@@ -178,7 +178,7 @@ public class CuentaController {
     }
     
     @Operation(summary = "Obtiene el saldo de una cuenta.", description = "Obtiene el saldo de una cuenta")
-    @GetMapping("/saldo/obtener/{accountId}")
+    @GetMapping("/saldo/obtener/{cuentaId}")
     public ResponseEntity<?> getSaldo(@RequestHeader("Authorization") String token, @PathVariable long cuentaId) {
         ResponseEntity<String> response = validarToken(token, List.of("ADMIN", "USER", "MAINTENER"));
         if(response.getStatusCode() != HttpStatus.OK){

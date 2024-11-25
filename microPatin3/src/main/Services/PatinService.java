@@ -111,7 +111,7 @@ public class PatinService{
 
 		PatinDTO patin = this.findById(scooterId);
 
-		String estacionUrl = "http://localhost:8001/estaciones/verificar/x/" + patin.getX() +  "/y/" + patin.getY();
+		String estacionUrl = "http://localhost:8001/paradas/verificar/x/" + patin.getX() +  "/y/" + patin.getY();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
 		HttpEntity<ParadaDTO> requestEntity = new HttpEntity<>(headers);
